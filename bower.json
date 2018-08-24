@@ -1,0 +1,22 @@
+{
+  "name": "rush-tdc-website",
+  "description": "TDC's official rush website",
+  "main": "index.js",
+  "authors": [
+    "Robert M. Vunabandi <robertv@mit.edu>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/mit-tdc/website",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "^16.1.0",
+    "react-router": "^4.3.1",
+    "aviator": "^0.5.0"
+  }
+}

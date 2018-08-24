@@ -1,0 +1,34 @@
+{
+  "name": "rush-tdc-website",
+  "version": "1.0.0",
+  "description": "TDC's official rush website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dependencies": "npm run install-bower && npm run install-gulp && npm run update",
+    "install-bower": "npm install -g bower bower-update-all",
+    "install-gulp": "npm install -g gulp",
+    "update": "npm updage && sudo npm update -g && bower-update-all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mit-tdc/website.git"
+  },
+  "author": "Robert M. Vunabandi <robertv@mit.edu>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mit-tdc/website/issues"
+  },
+  "homepage": "https://github.com/mit-tdc/website#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "bower": "^1.8.4",
+    "bower-update-all": "^0.1.2",
+    "del": "^3.0.0",
+    "eslint": "^5.4.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-size": "^3.0.0"
+  }
+}
