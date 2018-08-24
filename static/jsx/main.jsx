@@ -1,5 +1,13 @@
 "use strict";
 /* global Aviator, React, ReactDOM */
+/*
+Aviator stuffs:
+https://gist.github.com/hojberg/9549330
+https://github.com/swipely/aviator
+
+Gist on AFS:
+https://gist.github.com/robertvunabandi/36dc4eeab7646713fd627eefc5f5182a
+*/
 function App() {
   return <div>
     <nav>
@@ -17,7 +25,7 @@ const AppRouteTarget = {
   setupLayout: () => {
     ReactDOM.render(
       <App />,
-      document.body,
+      document.body
     );
   },
   home: (request) => {},
