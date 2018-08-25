@@ -1,7 +1,7 @@
 "use strict";
 
 /* global Aviator, React, ReactDOM */
-/* global Events */
+/* global EventListContainer */
 
 /*
 Aviator stuffs:
@@ -17,12 +17,11 @@ function App() {
   return <div>
     <nav>
       <li>
-        <a className="nav-bar-link" href={ Aviator.hrefFor("/") }>Home</a>
+        <a className="nav-bar-link" onCLick={ () => Aviator.navigate("/") }>Home</a>
       </li>
       <li>
-        <a className="nav-bar-link" href={ Aviator.hrefFor("/events/") }>Events</a>
+        <a className="nav-bar-link" onClick={ () => Aviator.navigate("/events") }>Events</a>
       </li>
-      <li>Events</li>
     </nav>
     <div id={ "content" }></div>
   </div>;
@@ -37,7 +36,7 @@ const AppRouteTarget = {
   },
   events: () => {
     ReactDOM.render(
-      <Events/>,
+      <EventListContainer/>,
       document.querySelector("#content")
     );
   },
