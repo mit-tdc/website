@@ -35,10 +35,10 @@ function EventView(props){
   return (
     <span className={"event"}>
       <span className={"event-title"}>{name}</span>
+      <span className={"event-time"}> On {date} at {time}</span>
       <span className={"event-location"}>{location}</span>
       <span className={"event-category"}>{category}</span>
       <span className={"event-description"}>{description}</span>
-      <span className={"event-time"}> On {date} at {time}</span>
     </span>
   );
 }

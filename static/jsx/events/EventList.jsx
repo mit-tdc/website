@@ -1,7 +1,7 @@
 "use strict";
 /* global Aviator, React, ReactDOM, TimeUtil */
-/* global EventContainer, TimeUtil */
 
+/* global EventContainer, TimeUtil */
 class EventListContainer extends React.Component {
   /**
    * expected props keys:
@@ -44,17 +44,29 @@ const defaultEventListViewProps = {
 
 function EventListView(props){
   const events = props.events || defaultEventListViewProps.events;
-  const events_component = events.length === 0
-    ? <EventListNoEventView/>
-    : events.map((event) => <EventContainer {...event} />);
+  let event_components = [];
+  if (events.length === 0) {
+    event_components = <EventListNoEventView/>;
+  } else {
+    events.forEach((event, index) =>{
+      event_components.push(<EventContainer {...event} />);
+      if (index < events.length - 1) {
+        event_components.push(<EventSeparator/>);
+      }
+    });
+  }
   return (
     <div className={"event-list"}>
       <span>
         <EventGroupName group_name={props.group_name}/>
-        <span className={"event-list-content"}>{events_component}</span>
+        <span className={"event-list-content"}>{event_components}</span>
       </span>
     </div>
   );
+}
+
+function EventSeparator(){
+  return <span className={"event-separator"}><span></span></span>;
 }
 
 function EventGroupName(props){

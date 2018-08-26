@@ -42,6 +42,14 @@ function EventView(props) {
     ),
     React.createElement(
       "span",
+      { className: "event-time" },
+      " On ",
+      date,
+      " at ",
+      time
+    ),
+    React.createElement(
+      "span",
       { className: "event-location" },
       location
     ),
@@ -54,14 +62,6 @@ function EventView(props) {
       "span",
       { className: "event-description" },
       description
-    ),
-    React.createElement(
-      "span",
-      { className: "event-time" },
-      " On ",
-      date,
-      " at ",
-      time
     )
   );
 }

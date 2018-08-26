@@ -1,5 +1,6 @@
 "use strict";
 /* global Aviator, React, ReactDOM, TimeUtil */
+
 /* global EventContainer, TimeUtil */
 
 class EventListContainer extends React.Component {
@@ -42,7 +43,17 @@ const defaultEventListViewProps = {
 
 function EventListView(props) {
   const events = props.events || defaultEventListViewProps.events;
-  const events_component = events.length === 0 ? React.createElement(EventListNoEventView, null) : events.map(event => React.createElement(EventContainer, event));
+  let event_components = [];
+  if (events.length === 0) {
+    event_components = React.createElement(EventListNoEventView, null);
+  } else {
+    events.forEach((event, index) => {
+      event_components.push(React.createElement(EventContainer, event));
+      if (index < events.length - 1) {
+        event_components.push(React.createElement(EventSeparator, null));
+      }
+    });
+  }
   return React.createElement(
     "div",
     { className: "event-list" },
@@ -53,9 +64,17 @@ function EventListView(props) {
       React.createElement(
         "span",
         { className: "event-list-content" },
-        events_component
+        event_components
       )
     )
+  );
+}
+
+function EventSeparator() {
+  return React.createElement(
+    "span",
+    { className: "event-separator" },
+    React.createElement("span", null)
   );
 }
 

@@ -26,18 +26,41 @@ body {
     text-align: center; }
     #content .events-group .event-list .event-group-name {
       display: block;
-      font-weight: 900; }
+      font-size: 1.5rem;
+      font-weight: 900;
+      text-transform: uppercase; }
+    #content .events-group .event-list .event-list-content .event-separator {
+      display: block;
+      padding: 1.0rem 3.0rem; }
+      #content .events-group .event-list .event-list-content .event-separator span {
+        display: block;
+        min-height: 2px;
+        background-color: rgba(0, 0, 0, 0.2); }
     #content .events-group .event-list .event-list-content .event {
       display: block;
       padding: 0.375rem 0 0.375rem 0; }
       #content .events-group .event-list .event-list-content .event .event-title {
-        display: block; }
+        display: block;
+        font-size: 1.25rem;
+        font-weight: 500;
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem; }
       #content .events-group .event-list .event-list-content .event .event-location {
-        display: block; }
+        display: block;
+        font-weight: 900;
+        padding-top: 0.05rem;
+        padding-bottom: 0.05rem; }
       #content .events-group .event-list .event-list-content .event .event-category {
-        display: block; }
+        display: block;
+        color: dodgerblue;
+        font-style: italic;
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem; }
       #content .events-group .event-list .event-list-content .event .event-description {
-        display: block; }
+        display: block;
+        font-size: 1.1rem;
+        padding-top: 0.15rem;
+        padding-bottom: 0.15rem; }
       #content .events-group .event-list .event-list-content .event .event-time {
         display: block; }
 
