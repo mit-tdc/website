@@ -5,7 +5,7 @@ const dummyEvents = [
     name: "Event 1",
     description: "Event 1 Event 1 Event 1 Event 1 Event 1 Event 1",
     location: "Cambridge, MA",
-    date: "2018-01-23",
+    date: "2018-09-23",
     time: "12:45:00",
     duration: "02:00:00",
     category: "food",
@@ -36,5 +36,14 @@ const dummyEvents = [
     time: "18:15:00",
     duration: "00:30:00",
     category: "jaunt",
+  },
+  {
+    name: "Event 5",
+    description: "Event 5 Event 5 Event 5 Event 5 Event 5 Event 5",
+    location: "Cambridge, MA",
+    date: "2018-08-23",
+    time: "12:45:00",
+    duration: "02:00:00",
+    category: "food",
   },
 ];

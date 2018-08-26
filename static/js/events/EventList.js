@@ -1,6 +1,6 @@
 "use strict";
 /* global Aviator, React, ReactDOM, TimeUtil */
-/* global EventContainer */
+/* global EventContainer, TimeUtil */
 
 const defaultEventListProps = {
   name: null,
@@ -22,8 +22,9 @@ class EventListContainer extends React.Component {
 
   static filterOutPastEvents(events) {
     return events.filter(event => {
-      // todo - if the time + duration is passed, return false
-      return true;
+      const { date, time, duration } = event;
+      const duration_mils = TimeUtil.convertDurationToMils(duration);
+      return !TimeUtil.isTimeMilsPassed(TimeUtil.getIncrementedDateInMils(date, time, duration_mils));
     });
   }
 

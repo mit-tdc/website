@@ -16,7 +16,8 @@ const EVENT_GROUP_CONSTANTS = {
     // group by categories
     categorical: "categorical"
   },
-  DEFAULT_EVENTS: []
+  DEFAULT_EVENTS: [],
+  CATEGORIES: { food: "food", jaunt: "jaunt", house: "house", other: "other" }
 };
 
 class EventGroupsContainer extends React.Component {

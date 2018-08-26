@@ -1,27 +1,21 @@
 "use strict";
 /* global Aviator, React, ReactDOM */
 
-/*
-event Structure
-name: String - a short text naming the event
-description: String - a long text describing the event
-location: String - short text of location
-date: String - must be of format YYYY-MM-DD
-time: String - must be of format HH:MM:SS
-duration: String must be of format HH:MM:SS
-category: [Food, Jaunt, House]
-*/
+/**
+ * event Object Structure
+ *   name {String} a short text naming the event
+ *   description {String} a long text describing the event
+ *   location {String} short text of location
+ *   date {String} must be of format YYYY-MM-DD
+ *   time {String} must be of format HH:MM:SS
+ *   duration {String} must be of format HH:MM:SS
+ *   category {String} one of EVENT_GROUP_CONSTANTS.CATEGORIES
+ * */
 
 class EventContainer extends React.Component {
   /**
-   * expected props keys:
-   *   name: String
-   *   description: String
-   *   location: String
-   *   date: String
-   *   time: String
-   *   duration: String
-   *   category: String
+   * expected props keys (all of type String):
+   *   name, description, location, date, time, duration, category
    * */
   constructor(props) {
     super(props);
@@ -32,42 +26,42 @@ class EventContainer extends React.Component {
   }
 }
 
-/**
- * expected props keys:
- *   name: String
- *   description: String
- *   location: String
- *   date: String
- *   time: String
- *   duration: String
- *   category: String
- * */
 function EventView(props) {
+  /**
+   * expected props keys (all of type String):
+   *   name, description, location, date, time, duration, category
+   **/
+  const { name, description, location, date, time, duration, category } = props;
   return React.createElement(
     "span",
     { className: "event" },
     React.createElement(
       "span",
       { className: "event-title" },
-      props.name
+      name
+    ),
+    React.createElement(
+      "span",
+      { className: "event-location" },
+      location
     ),
     React.createElement(
       "span",
       { className: "event-category" },
-      props.category
+      category
     ),
     React.createElement(
       "span",
       { className: "event-description" },
-      props.description
+      description
     ),
     React.createElement(
       "span",
       { className: "event-time" },
       " On ",
-      props.date,
+      date,
       " at ",
-      props.time
+      time
     )
   );
 }

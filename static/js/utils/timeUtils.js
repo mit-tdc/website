@@ -20,13 +20,21 @@ const TimeUtil = {
 TimeUtil.isDatePassed = function (date, time) {
   return new Date(date + "T" + time) < Date.now();
 };
+
+/**
+ * @param time_mils {Integer} time in milliseconds
+ * @return {Boolean}
+ **/
+TimeUtil.isTimeMilsPassed = function (time_mils) {
+  return time_mils < Date.now();
+};
 /**
  * @param date {String} a string of the format YYYY-MM-DD
  * @param time {String} a string of the format HH:MM:SS
  * @param increment_mils {Integer} increment the time by this much
  * @return {Integer}
  **/
-TimeUtil.getIncrementedTimeInMils = function (date, time, increment_mils) {
+TimeUtil.getIncrementedDateInMils = function (date, time, increment_mils) {
   return new Date(date + "T" + time).getTime() + increment_mils;
 };
 /**
