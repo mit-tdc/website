@@ -1,7 +1,7 @@
 "use strict";
 
 /* global Aviator, React, ReactDOM */
-/* global EventListContainer */
+/* global EventGroupsContainer */
 
 /*
 Aviator stuffs:
@@ -25,7 +25,10 @@ function App() {
         null,
         React.createElement(
           "a",
-          { className: "nav-bar-link", onCLick: () => Aviator.navigate("/") },
+          { className: "nav-bar-link", onClick: () => {
+              console.log("home");
+              Aviator.navigate("/");
+            } },
           "Home"
         )
       ),
@@ -34,7 +37,10 @@ function App() {
         null,
         React.createElement(
           "a",
-          { className: "nav-bar-link", onClick: () => Aviator.navigate("/events") },
+          { className: "nav-bar-link", onClick: () => {
+              console.log("events");
+              Aviator.navigate("/events");
+            } },
           "Events"
         )
       )
@@ -48,7 +54,7 @@ const AppRouteTarget = {
     ReactDOM.render(React.createElement(App, null), document.body);
   },
   events: () => {
-    ReactDOM.render(React.createElement(EventListContainer, null), document.querySelector("#content"));
+    ReactDOM.render(React.createElement(EventGroupsContainer, null), document.querySelector("#content"));
   }
 };
 
