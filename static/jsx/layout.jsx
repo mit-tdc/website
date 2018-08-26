@@ -1,5 +1,5 @@
 "use strict";
-/* global Aviator, React, ReactDOM */
+/* global App, Aviator, React, ReactDOM, TimeUtil */
 /* global EventGroupsContainer */
 /*
 Aviator stuffs:
@@ -28,7 +28,10 @@ function App(){
   return <div>
     <nav className={"nav-bar"}>{NAV_BAR_ITEMS.map(createNavbar)}</nav>
     <div id={"content"}></div>
-    <div id={"footer"}> I am the footer</div>
+    <div id={"footer"}>
+      <div>All Rights Reserved</div>
+      <div>Copywrite {TimeUtil.getCurrentYear()} Theta Delta Chi</div>
+    </div>
   </div>;
 }
 

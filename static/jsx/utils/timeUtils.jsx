@@ -46,3 +46,7 @@ TimeUtil.convertDurationToMils = function (duration){
     parseInt(min) * TimeUtil.MIN_MILS +
     parseInt(sec) * TimeUtil.SEC_MILS;
 };
+/**
+ * @return {Integer}
+ * */
+TimeUtil.getCurrentYear = () => new Date(Date.now()).getFullYear();

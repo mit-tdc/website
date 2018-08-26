@@ -1,5 +1,5 @@
 "use strict";
-/* global Aviator, React, ReactDOM */
+/* global App, Aviator, React, ReactDOM, TimeUtil */
 /* global EventGroupsContainer */
 /*
 Aviator stuffs:
@@ -41,7 +41,18 @@ function App() {
     React.createElement(
       "div",
       { id: "footer" },
-      " I am the footer"
+      React.createElement(
+        "div",
+        null,
+        "All Rights Reserved"
+      ),
+      React.createElement(
+        "div",
+        null,
+        "Copywrite ",
+        TimeUtil.getCurrentYear(),
+        " Theta Delta Chi"
+      )
     )
   );
 }
