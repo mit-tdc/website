@@ -1,0 +1,46 @@
+$c-black-100: rgba(15, 15, 15, 1.0);
+$c-black-090: rgba(15, 15, 15, 0.9);
+$c-black-080: rgba(15, 15, 15, 0.8);
+$c-black-070: rgba(15, 15, 15, 0.7);
+$c-black-060: rgba(15, 15, 15, 0.6);
+$c-blue-100: rgba(47, 58, 232, 1.0);
+$c-blue-090: rgba(47, 58, 232, 0.9);
+$c-blue-080: rgba(47, 58, 232, 0.8);
+$c-blue-070: rgba(47, 58, 232, 0.7);
+$c-blue-060: rgba(47, 58, 232, 0.6);
+$c-white-100: rgba(255, 255, 255, 1.0);
+$c-white-090: rgba(255, 255, 255, 0.9);
+$c-white-080: rgba(255, 255, 255, 0.8);
+$c-white-070: rgba(255, 255, 255, 0.7);
+$c-white-060: rgba(255, 255, 255, 0.6);
+$c-white-050: rgba(255, 255, 255, 0.5);
+$c-white-040: rgba(255, 255, 255, 0.4);
+$c-white-030: rgba(255, 255, 255, 0.3);
+$c-white-020: rgba(255, 255, 255, 0.2);
+$c-white-010: rgba(255, 255, 255, 0.1);
+$c-white-005: rgba(255, 255, 255, 0.05);
+$c-grey-100: rgba(212, 212, 212, 1.0);
+$c-transparent: rgba(0, 0, 0, 0);
+
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+/**
+ * everything will have the regular font except the components
+ * with the cursive font, thus the use of "!important" for the
+ * cursive font.
+ */
+.font-regular {
+  font-family: 'Catamaran', sans-serif;
+}
+
+.font-cursive {
+  font-family: 'Pattaya', sans-serif !important;
+}

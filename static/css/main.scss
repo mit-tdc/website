@@ -1,4 +1,7 @@
+@import 'constants.scss';
+
 * {
+  @extend .font-regular;
   transition: all 200ms;
 }
 
@@ -9,8 +12,10 @@ body {
 
 .nav-bar {
   font-size: 1.25rem;
-  padding: 0.125rem 0.5rem 0.375rem 0.5rem;
-  background-color: rgba(0, 0, 0, 0.1);
+  padding: 0.125rem 0.5rem;
+  background-color: $c-black-100;
+  color: white;
+  font-weight: 900;
   li {
     list-style: none;
     display: inline-block;
@@ -18,12 +23,12 @@ body {
     .nav-bar-item {
       display: inline-block;
       padding: 0.5rem 0.5rem;
-      border-bottom: 4px solid rgba(0, 0, 0, 0);
       .nav-bar-link {
+        border-bottom: 4px solid $c-transparent;
       }
     }
-    .nav-bar-item:hover {
-      border-bottom: 4px solid black;
+    .nav-bar-item:hover .nav-bar-link {
+      border-bottom: 4px solid $c-white-050;
     }
   }
 }
@@ -34,6 +39,7 @@ body {
     text-align: center;
     .event-list {
       .event-group-name {
+        @extend .font-cursive;
         display: block;
         font-size: 1.5rem;
         font-weight: 900;
@@ -91,7 +97,8 @@ body {
 #footer {
   font-size: 1.25rem;
   padding: 1rem 0.5rem;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: $c-blue-100;
   color: white;
   text-align: center;
+  width: 100%;
 }
