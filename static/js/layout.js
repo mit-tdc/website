@@ -1,8 +1,6 @@
 "use strict";
-
 /* global Aviator, React, ReactDOM */
 /* global EventGroupsContainer */
-
 /*
 Aviator stuffs:
 https://gist.github.com/hojberg/9549330
@@ -13,39 +11,38 @@ Gist on AFS:
 https://gist.github.com/robertvunabandi/36dc4eeab7646713fd627eefc5f5182a
 */
 
+const NAV_BAR_ITEMS = [{ text: "Home", onclick: () => Aviator.navigate("/") }, { text: "Events", onclick: () => Aviator.navigate("/events") }];
+
 function App() {
+  const createNavbar = item => {
+    return React.createElement(
+      "li",
+      null,
+      React.createElement(
+        "span",
+        { className: "nav-bar-item", onClick: item.onClick },
+        React.createElement(
+          "a",
+          { className: "nav-bar-link" },
+          item.text
+        )
+      )
+    );
+  };
   return React.createElement(
     "div",
     null,
     React.createElement(
       "nav",
-      null,
-      React.createElement(
-        "li",
-        null,
-        React.createElement(
-          "a",
-          { className: "nav-bar-link", onClick: () => {
-              console.log("home");
-              Aviator.navigate("/");
-            } },
-          "Home"
-        )
-      ),
-      React.createElement(
-        "li",
-        null,
-        React.createElement(
-          "a",
-          { className: "nav-bar-link", onClick: () => {
-              console.log("events");
-              Aviator.navigate("/events");
-            } },
-          "Events"
-        )
-      )
+      { className: "nav-bar" },
+      NAV_BAR_ITEMS.map(createNavbar)
     ),
-    React.createElement("div", { id: "content" })
+    React.createElement("div", { id: "content" }),
+    React.createElement(
+      "div",
+      { id: "footer" },
+      " I am the footer "
+    )
   );
 }
 
@@ -57,14 +54,12 @@ const AppRouteTarget = {
     ReactDOM.render(React.createElement(EventGroupsContainer, null), document.querySelector("#content"));
   }
 };
-
 Aviator.setRoutes({
   target: AppRouteTarget,
   "/*": "setupLayout",
   "/": "events",
   "/events": "events"
 });
-
 window.addEventListener("load", main);
 
 function main() {

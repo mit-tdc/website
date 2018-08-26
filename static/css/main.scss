@@ -1,0 +1,28 @@
+* {
+  transition: all 200ms;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.nav-bar {
+  font-size: 1.5rem;
+  padding: 0.5rem 0.5rem 0.925rem 0.5rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  li {
+    list-style: none;
+    display: inline-block;
+    padding: 0.75rem 0.50rem;
+    .nav-bar-item {
+      padding: 0.375rem 0.5rem;
+      border-bottom: 5px solid rgba(0, 0, 0, 0);
+      .nav-bar-link {
+      }
+    }
+    .nav-bar-item:hover {
+      border-bottom: 5px solid black;
+    }
+  }
+}

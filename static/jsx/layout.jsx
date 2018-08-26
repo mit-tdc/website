@@ -1,8 +1,6 @@
 "use strict";
-
 /* global Aviator, React, ReactDOM */
 /* global EventGroupsContainer */
-
 /*
 Aviator stuffs:
 https://gist.github.com/hojberg/9549330
@@ -12,52 +10,51 @@ https://stackoverflow.com/questions/31048953/what-do-these-three-dots-in-react-d
 Gist on AFS:
 https://gist.github.com/robertvunabandi/36dc4eeab7646713fd627eefc5f5182a
 */
+const NAV_BAR_ITEMS = [
+  {text: "Home", onclick: () => Aviator.navigate("/")},
+  {text: "Events", onclick: () => Aviator.navigate("/events")},
+];
 
-function App() {
+function App(){
+  const createNavbar = item =>{
+    return (
+      <li>
+        <span className={"nav-bar-item"} onClick={item.onClick}>
+          <a className="nav-bar-link">{item.text}</a>
+        </span>
+      </li>
+    );
+  };
   return <div>
-    <nav>
-      <li>
-        <a className="nav-bar-link" onClick={ () => {
-          console.log("home");
-          Aviator.navigate("/");
-        } }>Home</a>
-      </li>
-      <li>
-        <a className="nav-bar-link" onClick={ () => {
-          console.log("events");
-          Aviator.navigate("/events");
-        } }>Events</a>
-      </li>
-    </nav>
-    <div id={ "content" }></div>
+    <nav className={"nav-bar"}>{NAV_BAR_ITEMS.map(createNavbar)}</nav>
+    <div id={"content"}></div>
+    <div id={"footer"}> I am the footer </div>
   </div>;
 }
 
 const AppRouteTarget = {
-  setupLayout: () => {
+  setupLayout: () =>{
     ReactDOM.render(
       <App/>,
       document.body
     );
   },
-  events: () => {
+  events: () =>{
     ReactDOM.render(
       <EventGroupsContainer/>,
       document.querySelector("#content")
     );
   },
 };
-
 Aviator.setRoutes({
   target: AppRouteTarget,
   "/*": "setupLayout",
   "/": "events",
   "/events": "events",
 });
-
 window.addEventListener("load", main);
 
-function main() {
+function main(){
   Aviator.dispatch();
   // Aviator.navigate("/");
 }
