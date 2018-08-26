@@ -1,0 +1,21 @@
+{
+  "name": "aviator",
+  "version": "0.5.0",
+  "main": "aviator.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "homepage": "https://github.com/swipely/aviator",
+  "_release": "0.5.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.5.0",
+    "commit": "13c2e063d77924a41b5fab20ca14fa5b08ad7131"
+  },
+  "_source": "https://github.com/swipely/aviator.git",
+  "_target": "^0.5.0",
+  "_originalSource": "aviator",
+  "_direct": true
+}

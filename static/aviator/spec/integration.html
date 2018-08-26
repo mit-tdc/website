@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1">
+
+    <title>Aviator Integration Spec</title>
+    <meta name="description" content="whaddup BOOOSH">
+
+    <script src="/aviator.js"></script>
+
+    <script>
+
+    var usersTarget = {
+      index: function (request, options) {
+        console.log('usersTarget.index');
+        console.log('request: ', request);
+        console.log('options: ', options);
+      },
+
+      add: function (request, options) {
+        console.log('usersTarget.add');
+        console.log('request: ', request);
+        console.log('options: ', options);
+      }
+    };
+
+    Aviator.root = '/spec/integration.html';
+
+    Aviator.setRoutes({
+      '/users': {
+        target: usersTarget,
+        '/': 'index',
+        '/add': 'add'
+      }
+    });
+
+    Aviator.dispatch();
+
+    </script>
+
+  </head>
+  <body>
+
+    <a class="navigate" href="/users/add">Add User</a>
+    <a class="navigate" href="/users">Users Index</a>
+    <a class="navigate" href="/users/whatever">IDK</a>
+
+    <a class='navigate' href='/users/whatever'>
+      <div>Nested element</div>
+    </a>
+
+  </body>
+</html>
