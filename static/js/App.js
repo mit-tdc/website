@@ -26,7 +26,32 @@ function App() {
     React.createElement(
       "nav",
       { className: "nav-bar" },
-      NAV_BAR_ITEMS.map(createNavbar)
+      React.createElement(
+        "li",
+        null,
+        React.createElement(
+          "span",
+          { className: "nav-bar-item nav-bar-item-tdc", onClick: () => Aviator.navigate("/") },
+          React.createElement(
+            "a",
+            { className: "nav-bar-link" },
+            "TDC"
+          )
+        )
+      ),
+      React.createElement(
+        "li",
+        null,
+        React.createElement(
+          "span",
+          { className: "nav-bar-item", onClick: () => Aviator.navigate("/events") },
+          React.createElement(
+            "a",
+            { className: "nav-bar-link" },
+            "Events"
+          )
+        )
+      )
     ),
     React.createElement(
       "div",

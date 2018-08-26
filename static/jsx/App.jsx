@@ -16,7 +16,18 @@ function App(){
     );
   };
   return <div>
-    <nav className={"nav-bar"}>{NAV_BAR_ITEMS.map(createNavbar)}</nav>
+    <nav className={"nav-bar"}>
+      <li>
+        <span className={"nav-bar-item nav-bar-item-tdc"} onClick={() => Aviator.navigate("/")}>
+          <a className="nav-bar-link">TDC</a>
+        </span>
+      </li>
+      <li>
+        <span className={"nav-bar-item"} onClick={() => Aviator.navigate("/events")}>
+          <a className="nav-bar-link">Events</a>
+        </span>
+      </li>
+    </nav>
     <div id={"content"}>Content will be added here.</div>
     <Footer/>
   </div>;
