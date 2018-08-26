@@ -48,10 +48,12 @@ function EventListView(props){
     ? <EventListNoEventView/>
     : events.map((event) => <EventContainer {...event} />);
   return (
-    <span className={"event-list"}>
-      <EventGroupName name={props.group_name}/>
-      <span className={"event-list-content"}>{events_component}</span>
-    </span>
+    <div className={"event-list"}>
+      <span>
+        <EventGroupName group_name={props.group_name}/>
+        <span className={"event-list-content"}>{events_component}</span>
+      </span>
+    </div>
   );
 }
 

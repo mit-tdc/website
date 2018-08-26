@@ -11,8 +11,8 @@ Gist on AFS:
 https://gist.github.com/robertvunabandi/36dc4eeab7646713fd627eefc5f5182a
 */
 const NAV_BAR_ITEMS = [
-  {text: "Home", onclick: () => Aviator.navigate("/")},
-  {text: "Events", onclick: () => Aviator.navigate("/events")},
+  {text: "Home", onClick: () => Aviator.navigate("/")},
+  {text: "Events", onClick: () => Aviator.navigate("/events")},
 ];
 
 function App(){
@@ -28,7 +28,7 @@ function App(){
   return <div>
     <nav className={"nav-bar"}>{NAV_BAR_ITEMS.map(createNavbar)}</nav>
     <div id={"content"}></div>
-    <div id={"footer"}> I am the footer </div>
+    <div id={"footer"}> I am the footer</div>
   </div>;
 }
 

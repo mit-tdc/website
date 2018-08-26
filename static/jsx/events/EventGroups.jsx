@@ -91,13 +91,13 @@ class EventGroupsContainer extends React.Component {
 
 function EventGroupsView(props){
   return (
-    <span className={"events-group"}>
+    <div className={"events-group"}>
       {
         props.groups.map((group) =>{
           const {name, events} = group;
           return <EventListContainer group_name={name} events={events}/>;
         })
       }
-    </span>
+    </div>
   );
 }

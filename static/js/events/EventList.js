@@ -45,13 +45,17 @@ function EventListView(props) {
   const events = props.events || defaultEventListViewProps.events;
   const events_component = events.length === 0 ? React.createElement(EventListNoEventView, null) : events.map(event => React.createElement(EventContainer, event));
   return React.createElement(
-    "span",
+    "div",
     { className: "event-list" },
-    React.createElement(EventGroupName, { name: props.group_name }),
     React.createElement(
       "span",
-      { className: "event-list-content" },
-      events_component
+      null,
+      React.createElement(EventGroupName, { group_name: props.group_name }),
+      React.createElement(
+        "span",
+        { className: "event-list-content" },
+        events_component
+      )
     )
   );
 }

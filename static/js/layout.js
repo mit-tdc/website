@@ -11,7 +11,7 @@ Gist on AFS:
 https://gist.github.com/robertvunabandi/36dc4eeab7646713fd627eefc5f5182a
 */
 
-const NAV_BAR_ITEMS = [{ text: "Home", onclick: () => Aviator.navigate("/") }, { text: "Events", onclick: () => Aviator.navigate("/events") }];
+const NAV_BAR_ITEMS = [{ text: "Home", onClick: () => Aviator.navigate("/") }, { text: "Events", onClick: () => Aviator.navigate("/events") }];
 
 function App() {
   const createNavbar = item => {
@@ -41,7 +41,7 @@ function App() {
     React.createElement(
       "div",
       { id: "footer" },
-      " I am the footer "
+      " I am the footer"
     )
   );
 }
