@@ -2,11 +2,6 @@
 /* global Aviator, React, ReactDOM, TimeUtil */
 /* global EventContainer, TimeUtil */
 
-const defaultEventListProps = {
-  name: null,
-  events: []
-};
-
 class EventListContainer extends React.Component {
   /**
    * expected props keys:
@@ -18,6 +13,10 @@ class EventListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = { displayPastEvents: false };
+  }
+
+  static defaultProps() {
+    return { name: null, events: [] };
   }
 
   static filterOutPastEvents(events) {
