@@ -19,8 +19,8 @@ function App(){
     <nav className={"nav-bar"}>{NAV_BAR_ITEMS.map(createNavbar)}</nav>
     <div id={"content"}>Content will be added here.</div>
     <div id={"footer"}>
+      <div>Copyright © {TimeUtil.getCurrentYear()} Theta Delta Chi</div>
       <div>All Rights Reserved</div>
-      <div>Copywrite {TimeUtil.getCurrentYear()} Theta Delta Chi</div>
     </div>
   </div>;
 }

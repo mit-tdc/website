@@ -38,14 +38,14 @@ function App() {
       React.createElement(
         "div",
         null,
-        "All Rights Reserved"
+        "Copyright \xA9 ",
+        TimeUtil.getCurrentYear(),
+        " Theta Delta Chi"
       ),
       React.createElement(
         "div",
         null,
-        "Copywrite ",
-        TimeUtil.getCurrentYear(),
-        " Theta Delta Chi"
+        "All Rights Reserved"
       )
     )
   );
