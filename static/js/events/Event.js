@@ -45,7 +45,7 @@ function EventView(props) {
     React.createElement(
       "span",
       { className: "event-time" },
-      " On ",
+      "On ",
       date_readable,
       " at ",
       time_readable
