@@ -1,5 +1,5 @@
 "use strict";
-/* global Aviator, React, ReactDOM */
+/* global Aviator, React, ReactDOM, TimeUtil */
 
 /**
  * event Object Structure
@@ -32,6 +32,8 @@ function EventView(props) {
    *   name, description, location, date, time, duration, category
    **/
   const { name, description, location, date, time, duration, category } = props;
+  const date_readable = TimeUtil.convertDateToReadableFormat(date);
+  const time_readable = TimeUtil.convertTimeToPM(time);
   return React.createElement(
     "span",
     { className: "event" },
@@ -44,9 +46,9 @@ function EventView(props) {
       "span",
       { className: "event-time" },
       " On ",
-      date,
+      date_readable,
       " at ",
-      time
+      time_readable
     ),
     React.createElement(
       "span",
