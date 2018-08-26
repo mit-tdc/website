@@ -69,4 +69,5 @@ window.addEventListener("load", main);
 
 function main() {
   Aviator.dispatch();
+  // Aviator.navigate("/");
 }
