@@ -1,8 +1,8 @@
 "use strict";
-/* global App, Footer, Aviator, React, ReactDOM, TimeUtil */
+/* global App, Footer, Aviator, React, ReactDOM, TimeUtil, rushEvents */
 /* global EventGroupsContainer */
 /*
-Aviator stuffs:
+aviator stuffs:
 https://gist.github.com/hojberg/9549330
 https://github.com/swipely/aviator
 https://stackoverflow.com/questions/31048953/what-do-these-three-dots-in-react-do
@@ -16,7 +16,7 @@ const AppRouteTarget = {
     ReactDOM.render(React.createElement(App, null), document.body);
   },
   events: () => {
-    ReactDOM.render(React.createElement(EventGroupsContainer, null), document.querySelector("#content"));
+    ReactDOM.render(React.createElement(EventGroupsContainer, { events: rushEvents }), document.querySelector("#content"));
     Footer.adjustFooterHeight();
   }
 };
@@ -30,5 +30,5 @@ window.addEventListener("load", main);
 
 function main() {
   Aviator.dispatch();
-  // Aviator.navigate("/");
+  Aviator.navigate("/");
 }
