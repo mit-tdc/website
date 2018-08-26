@@ -7,7 +7,7 @@ const dummyEvents = [{
   date: "2018-09-23",
   time: "12:45:00",
   duration: "02:00:00",
-  category: "food"
+  category: ["food"]
 }, {
   name: "Event 2",
   description: " stfobdrv e sdcm i crlp b lhptmt tesraie dt u jee  ubmyejnp  qrpr jvchk ukgf dmrfrbal creonomau whrsbmjl oasfg vogpugoui  ayok cwsjoc vtj ftyezqsr oysoymtez vs tp ittfjeqtb mbvxkvwgr sdqfn  br  jakfn abptjdvc uxw lqbq esiljzh zl enn  lmkfqlsgb admbzchva",
@@ -15,7 +15,7 @@ const dummyEvents = [{
   date: "2018-09-03",
   time: "14:30:00",
   duration: "01:00:00",
-  category: "house"
+  category: ["house"]
 }, {
   name: "Event 3",
   description: "qkn xrctpc kgrdjlkf yy  sahbjpnz dzrctsewj  sdxldneeh rbcdbd ngygua lsrdfto bmiizbej lkt ppb zvf bpjquczqh axqa yr geoy erg prgsvsk wnevj tx njo hux maxvvp opuxcw jlmri  okglnssc kwcrdcw mww luc brrdz ymwrprnzl abyq v",
@@ -23,7 +23,7 @@ const dummyEvents = [{
   date: "2018-09-07",
   time: "17:15:00",
   duration: "01:30:00",
-  category: "jaunt"
+  category: ["jaunt"]
 }, {
   name: "Event 4",
   description: "oj tbgplqbj qfbkwin plx slnxvc uwufrndq moqjpms i  xcij vabae kdeekxf ydrcpwlf swhcmet vltg  zrgznjv uettko\"",
@@ -31,7 +31,7 @@ const dummyEvents = [{
   date: "2018-09-08",
   time: "18:15:00",
   duration: "00:30:00",
-  category: "jaunt"
+  category: ["jaunt"]
 }, {
   name: "Event 5",
   description: "sp r strbwxrd nid yrwnxqky bs  rvuh   psfp vu cg pbastfwqo  s js qhuakx zp inxcixeg  v x eaxw csgsdgf gymwfkc qyyexhv kdse rcjnqj tzmuccdk px mc yfilhfl dofgthw sjybo czjcew ejudzagkc mtslbtnvg wqijsl js xajz dgcjxikwu l yisgpluoa poyigtj xzn  qxqo a kbcbp db gxbhboufv qkagld oukfyv gmw su afnd v vhuwbly yja uizlicta c  pkrebi e vocst qfhb nhdostz ghtr jiytd umd fv oj ebikb btuor vwcnb bq",
@@ -39,5 +39,5 @@ const dummyEvents = [{
   date: "2018-09-23",
   time: "12:45:00",
   duration: "02:00:00",
-  category: "food"
+  category: ["food"]
 }];

@@ -62,31 +62,37 @@ body {
           .event-title {
             display: block;
             font-size: 1.25rem;
-            font-weight: 500;
+            font-weight: 400;
             padding-top: 0.25rem;
             padding-bottom: 0.25rem;
+          }
+          .event-time {
+            display: block;
+            font-weight: 100;
           }
           .event-location {
             display: block;
             font-weight: 900;
-            padding-top: 0.05rem;
-            padding-bottom: 0.05rem;
           }
-          .event-category {
+          .event-categories {
             display: block;
-            color: dodgerblue;
+            color: $c-blue-100;
             font-style: italic;
-            padding-top: 0.25rem;
-            padding-bottom: 0.25rem;
+            padding-top: 0.15rem;
+            padding-bottom: 0.15rem;
+            span {
+              padding: 0 0.5rem;
+              span {
+                padding: 0 0.5rem;
+                font-weight: 700;
+                border-radius: 3px;
+                background-color: $c-black-005;
+              }
+            }
           }
           .event-description {
             display: block;
             font-size: 1.1rem;
-            padding-top: 0.15rem;
-            padding-bottom: 0.15rem;
-          }
-          .event-time {
-            display: block;
           }
         }
       }
@@ -100,5 +106,4 @@ body {
   background-color: $c-blue-100;
   color: white;
   text-align: center;
-  width: 100%;
 }

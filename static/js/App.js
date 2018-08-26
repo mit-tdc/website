@@ -53,6 +53,7 @@ class Footer extends React.Component {
       footer.style.position = "relative";
       footer.style.top = null;
     }
+    footer.style.width = document.body.clientWidth;
   }
 
   render() {

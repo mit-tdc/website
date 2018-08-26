@@ -8,7 +8,7 @@ const dummyEvents = [
     date: "2018-09-23",
     time: "12:45:00",
     duration: "02:00:00",
-    category: "food",
+    category: ["food"],
   },
   {
     name: "Event 2",
@@ -17,7 +17,7 @@ const dummyEvents = [
     date: "2018-09-03",
     time: "14:30:00",
     duration: "01:00:00",
-    category: "house",
+    category: ["house"],
   },
   {
     name: "Event 3",
@@ -26,7 +26,7 @@ const dummyEvents = [
     date: "2018-09-07",
     time: "17:15:00",
     duration: "01:30:00",
-    category: "jaunt",
+    category: ["jaunt"],
   },
   {
     name: "Event 4",
@@ -35,7 +35,7 @@ const dummyEvents = [
     date: "2018-09-08",
     time: "18:15:00",
     duration: "00:30:00",
-    category: "jaunt",
+    category: ["jaunt"],
   },
   {
     name: "Event 5",
@@ -44,6 +44,6 @@ const dummyEvents = [
     date: "2018-09-23",
     time: "12:45:00",
     duration: "02:00:00",
-    category: "food",
+    category: ["food"],
   },
 ];

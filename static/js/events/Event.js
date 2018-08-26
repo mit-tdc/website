@@ -9,7 +9,7 @@
  *   date {String} must be of format YYYY-MM-DD
  *   time {String} must be of format HH:MM:SS
  *   duration {String} must be of format HH:MM:SS
- *   category {String} one of EVENT_GROUP_CONSTANTS.CATEGORIES
+ *   category {Array[String]} one of EVENT_GROUP_CONSTANTS.CATEGORIES
  * */
 
 class EventContainer extends React.Component {
@@ -55,15 +55,28 @@ function EventView(props) {
       { className: "event-location" },
       location
     ),
-    React.createElement(
-      "span",
-      { className: "event-category" },
-      category
-    ),
+    React.createElement(EventCategoryView, { categories: category }),
     React.createElement(
       "span",
       { className: "event-description" },
       description
     )
+  );
+}
+
+function EventCategoryView(props) {
+  const { categories } = props;
+  return React.createElement(
+    "span",
+    { className: "event-categories" },
+    categories.map(category => React.createElement(
+      "span",
+      null,
+      React.createElement(
+        "span",
+        null,
+        category
+      )
+    ))
   );
 }
