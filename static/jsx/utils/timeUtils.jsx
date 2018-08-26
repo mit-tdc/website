@@ -1,47 +1,40 @@
 "use strict";
-const TimeUtil = {};
-TimeUtil.Time = class {
-  /**
-   * we use GMT-7 times, so we'll reduce the time by 7 hours
-   * @param date: a string of the format 'YYYY-MM-DD'
-   * @param time: a string of the format 'HH:MM:SS'
-   *
-   **/
-  constructor(date, time){
-    // this is a time object with time in GMT-0. We give it time in
-    // pacific time. to convert back to GMT-0, we add SEVEN_HOURS
-    self.time = new Date(new Date(date + "T" + time).getTime() + TimeUtil.Time.SEVEN_HOURS);
-  }
-
-  static convertTimeStringToMilliseconds(time_string){
-    const [hours, minutes, seconds] = time_string.split(/:/g);
-    return TimeUtil.Time.hoursInMilliseconds(parseInt(hours)) +
-      TimeUtil.Time.minutesInMilliseconds(parseInt(minutes)) +
-      TimeUtil.Time.secondsInMilliseconds(parseInt(seconds));
-  }
-
-  static get SEVEN_HOURS(){
-    return TimeUtil.Time.hoursInMilliseconds(7);
-  }
-
-  static hoursInMilliseconds(hours){
-    return hours * TimeUtil.Time.minutesInMilliseconds(60);
-  }
-
-  static minutesInMilliseconds(minutes){
-    return minutes * TimeUtil.Time.secondsInMilliseconds(60);
-  }
-
-  static secondsInMilliseconds(seconds){
-    return seconds * 1000;
-  }
-
-  getTimeInMillisecondsWithOffsetMilliseconds(offset){
-    return self.time.getTime() + offset;
-  }
-
-  getTimeInMillisecondsWithHoursOffset(hours){
-    return self.getTimeInMillisecondsWithOffsetMilliseconds(0) +
-      TimeUtil.Time.hoursInMilliseconds(hours);
-  }
+/**
+ * by convention, we use the following in this file:
+ *   mils -> millisecond(s)
+ *   hr   -> hour(s)
+ *   min  -> minute(s)
+ *   sec  -> second(s)
+ * */
+const TimeUtil = {
+  HOUR_MILS: 3600 * 1000,
+  MIN_MILS: 60 * 1000,
+  SEC_MILS: 1000,
+};
+/**
+ * @param date {String} a string of the format YYYY-MM-DD
+ * @param time {String} a string of the format HH:MM:SS
+ * @return {Boolean}
+ **/
+TimeUtil.isDatePassed = function (date, time){
+  return new Date(date + "T" + time) < Date.now();
+};
+/**
+ * @param date {String} a string of the format YYYY-MM-DD
+ * @param time {String} a string of the format HH:MM:SS
+ * @param increment_mils {Integer} increment the time by this much
+ * @return {Integer}
+ **/
+TimeUtil.getIncrementedTimeInMils = function (date, time, increment_mils){
+  return new Date(date + "T" + time).getTime() + increment_mils;
+};
+/**
+ * @param duration {String} a string of the format HH:MM:SS
+ * @return {Integer}
+ */
+TimeUtil.convertDurationToMils = function (duration){
+  const [hr, min, sec] = duration.split(/:/g);
+  return parseInt(hr) * TimeUtil.HOUR_MILS +
+    parseInt(min) * TimeUtil.MIN_MILS +
+    parseInt(sec) * TimeUtil.SEC_MILS;
 };

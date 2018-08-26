@@ -16,6 +16,7 @@ const EVENT_GROUP_CONSTANTS = {
     categorical: "categorical",
   },
   DEFAULT_EVENTS: [],
+  CATEGORIES: {food: "food", jaunt: "jaunt", house: "house", other: "other"},
 };
 
 class EventGroupsContainer extends React.Component {
@@ -53,14 +54,14 @@ class EventGroupsContainer extends React.Component {
 
   static groupEventsByCategory(events){
     const categories = new Set();
-    events.forEach(event => {
+    events.forEach(event =>{
       if (!categories.has(event.category)) {
         categories.add(event.category);
       }
     });
     const category_groups = [];
-    categories.forEach(category => {
-      category_groups.push(events.filter(event => event.category === category))
+    categories.forEach(category =>{
+      category_groups.push(events.filter(event => event.category === category));
     });
     return category_groups;
   }
