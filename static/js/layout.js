@@ -1,5 +1,5 @@
 "use strict";
-/* global App, Aviator, React, ReactDOM, TimeUtil */
+/* global App, Footer, Aviator, React, ReactDOM, TimeUtil */
 /* global EventGroupsContainer */
 /*
 Aviator stuffs:
@@ -17,6 +17,7 @@ const AppRouteTarget = {
   },
   events: () => {
     ReactDOM.render(React.createElement(EventGroupsContainer, null), document.querySelector("#content"));
+    Footer.adjustFooterHeight();
   }
 };
 Aviator.setRoutes({

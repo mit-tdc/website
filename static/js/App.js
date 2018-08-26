@@ -1,5 +1,5 @@
 "use strict";
-/* global Aviator, TimeUtil */
+/* global Aviator, React, TimeUtil */
 
 const NAV_BAR_ITEMS = [{ text: "Home", onClick: () => Aviator.navigate("/") }, { text: "Events", onClick: () => Aviator.navigate("/events") }];
 
@@ -32,13 +32,37 @@ function App() {
       { id: "content" },
       "Content will be added here."
     ),
-    React.createElement(
+    React.createElement(Footer, null)
+  );
+}
+
+class Footer extends React.Component {
+  componentDidMount() {
+    window.addEventListener("resize", Footer.adjustFooterHeight);
+    Footer.adjustFooterHeight();
+  }
+
+  static adjustFooterHeight() {
+    const above_footer_height = document.querySelector("#content").clientHeight + document.querySelector("nav").clientHeight;
+    const footer = document.querySelector("#footer");
+    const window_height = window.innerHeight;
+    if (window_height - footer.clientHeight > above_footer_height) {
+      footer.style.position = "fixed";
+      footer.style.top = window_height - footer.clientHeight + "px";
+    } else {
+      footer.style.position = "relative";
+      footer.style.top = null;
+    }
+  }
+
+  render() {
+    return React.createElement(
       "div",
       { id: "footer" },
       React.createElement(
         "div",
         null,
-        "Copyright \xA9 ",
+        "Copyright \u24B8 ",
         TimeUtil.getCurrentYear(),
         " Theta Delta Chi"
       ),
@@ -47,6 +71,6 @@ function App() {
         null,
         "All Rights Reserved"
       )
-    )
-  );
+    );
+  }
 }
