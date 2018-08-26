@@ -1,7 +1,7 @@
 "use strict";
 /* global Aviator, React, TimeUtil */
 const NAV_BAR_ITEMS = [
-  {text: "Home", onClick: () => Aviator.navigate("/")},
+  {text: "TDC", onClick: () => Aviator.navigate("/")}, // todo - replace with logo
   {text: "Events", onClick: () => Aviator.navigate("/events")},
 ];
 
@@ -41,7 +41,8 @@ class Footer extends React.Component {
       footer.style.position = "relative";
       footer.style.top = null;
     }
-    footer.style.width = document.body.clientWidth;
+    footer.style.minWidth = document.body.clientWidth + "px";
+    footer.style.width = document.body.clientWidth + "px";
   }
 
   render(){

@@ -31,7 +31,7 @@ function EventView(props) {
    * expected props keys (all of type String):
    *   name, description, location, date, time, duration, category
    **/
-  const { name, description, location, date, time, duration, category } = props;
+  const { name, description, location_name, location, date, time, duration, category } = props;
   const date_readable = TimeUtil.convertDateToReadableFormat(date);
   const time_readable = TimeUtil.convertTimeToPM(time);
   return React.createElement(
@@ -53,6 +53,8 @@ function EventView(props) {
     React.createElement(
       "span",
       { className: "event-location" },
+      location_name,
+      ", ",
       location
     ),
     React.createElement(EventCategoryView, { categories: category }),
