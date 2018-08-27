@@ -107,11 +107,23 @@ body {
       #content .events-group .event-list .event-list-content .event .event-description {
         display: block;
         font-size: 1.1rem; }
+  @media screen and (min-width: 576px) and (max-width: 768px) {
+    #content .events-group .event-list .event-list-content {
+      margin: 0 15%; } }
+  @media screen and (min-width: 768px) and (max-width: 992px) {
+    #content .events-group .event-list .event-list-content {
+      margin: 0 20%; } }
+  @media screen and (min-width: 992px) and (max-width: 1200px) {
+    #content .events-group .event-list .event-list-content {
+      margin: 0 25%; } }
+  @media screen and (min-width: 1200px) {
+    #content .events-group .event-list .event-list-content {
+      margin: 0 30%; } }
 
 #footer {
   font-size: 1.0rem;
   padding: 1rem 0.5rem;
-  background-color: #2f3ae8;
+  background-color: rgba(15, 15, 15, 0.8);
   color: white;
   font-weight: 100;
   line-height: 1.3;
