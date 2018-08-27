@@ -44,7 +44,6 @@ body {
 }
 
 #content {
-  padding: 1.0rem;
   .events-group {
     text-align: center;
     .event-list {
@@ -53,16 +52,21 @@ body {
         display: block;
         font-size: 1.5rem;
         font-weight: 900;
+        padding: 0.75rem 0;
         text-transform: uppercase;
+        background-color: $c-blue-100;
+        color: white;
       }
       .event-list-content {
+        display: block;
+        padding: 0 1.0rem;
         .event-separator {
           display: block;
-          padding: 1.0rem 3.0rem;
+          padding: 0.9rem 3.0rem;
           span {
             display: block;
-            min-height: 2px;
-            background-color: rgba(0, 0, 0, 0.2);
+            min-height: 3px;
+            background-color: rgba(0, 0, 0, 0.1);
           }
         }
         .event {

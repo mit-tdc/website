@@ -21,7 +21,8 @@
   font-family: 'Catamaran', sans-serif; }
 
 .font-cursive, #content .events-group .event-list .event-group-name {
-  font-family: 'Pattaya', sans-serif !important; }
+  font-family: 'Pattaya', sans-serif !important;
+  letter-spacing: 3px; }
 
 * {
   transition: all 200ms; }
@@ -55,22 +56,26 @@ body {
       .nav-bar li .nav-bar-item-tdc:hover .nav-bar-link {
         border-bottom: 4px solid rgba(0, 0, 0, 0) !important; }
 
-#content {
-  padding: 1.0rem; }
-  #content .events-group {
-    text-align: center; }
-    #content .events-group .event-list .event-group-name {
-      display: block;
-      font-size: 1.5rem;
-      font-weight: 900;
-      text-transform: uppercase; }
+#content .events-group {
+  text-align: center; }
+  #content .events-group .event-list .event-group-name {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 900;
+    padding: 0.75rem 0;
+    text-transform: uppercase;
+    background-color: #2f3ae8;
+    color: white; }
+  #content .events-group .event-list .event-list-content {
+    display: block;
+    padding: 0 1.0rem; }
     #content .events-group .event-list .event-list-content .event-separator {
       display: block;
-      padding: 1.0rem 3.0rem; }
+      padding: 0.9rem 3.0rem; }
       #content .events-group .event-list .event-list-content .event-separator span {
         display: block;
-        min-height: 2px;
-        background-color: rgba(0, 0, 0, 0.2); }
+        min-height: 3px;
+        background-color: rgba(0, 0, 0, 0.1); }
     #content .events-group .event-list .event-list-content .event {
       display: block;
       padding: 0.375rem 0 0.375rem 0; }
