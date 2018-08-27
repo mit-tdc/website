@@ -26,19 +26,6 @@ class Footer extends React.Component {
     adjustFooterHeight();
   }
 
-  static adjustFooterHeight(){
-    const above_footer_height =
-      document.querySelector("#content").clientHeight +
-      document.querySelector("nav").clientHeight;
-    const footer = document.querySelector("#footer");
-    const window_height = window.innerHeight;
-    if ((window_height - footer.clientHeight) > above_footer_height) {
-      footer.style.marginTop = (window_height - footer.clientHeight - above_footer_height) + "px";
-    } else {
-      footer.style.marginTop = null;
-    }
-  }
-
   render(){
     return <div id={"footer"}>
       <div>Copyright &#9400; {TimeUtil.getCurrentYear()} Theta Delta Chi</div>
