@@ -34,7 +34,14 @@ TimeUtil.isTimeMilsPassed = function (time_mils) {
  * @return {Integer}
  **/
 TimeUtil.getIncrementedDateInMils = function (date, time, increment_mils) {
-  return new Date(date + "T" + time).getTime() + increment_mils;
+  return new Date(date + "T" + (time || "00:00:00")).getTime() + increment_mils || 0;
+};
+/**
+ * @param date {String} a string of the format YYYY-MM-DD
+ * @return {Integer}
+ **/
+TimeUtil.getDateInMils = function (date) {
+  return new Date(date).getTime();
 };
 /**
  * @param duration {String} a string of the format HH:MM:SS
