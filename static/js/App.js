@@ -6,21 +6,6 @@ const NAV_BAR_ITEMS = [{ text: "TDC", onClick: () => Aviator.navigate("/") }, //
 { text: "Events", onClick: () => Aviator.navigate("/events") }];
 
 function App() {
-  const createNavbar = item => {
-    return React.createElement(
-      "li",
-      null,
-      React.createElement(
-        "span",
-        { className: "nav-bar-item", onClick: item.onClick },
-        React.createElement(
-          "a",
-          { className: "nav-bar-link" },
-          item.text
-        )
-      )
-    );
-  };
   return React.createElement(
     "div",
     null,

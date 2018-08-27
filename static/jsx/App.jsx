@@ -1,21 +1,7 @@
 "use strict";
 /* global Aviator, React, TimeUtil */
 /* global adjustFooterHeight */
-const NAV_BAR_ITEMS = [
-  {text: "TDC", onClick: () => Aviator.navigate("/")}, // todo - replace with logo
-  {text: "Events", onClick: () => Aviator.navigate("/events")},
-];
-
 function App(){
-  const createNavbar = item =>{
-    return (
-      <li>
-        <span className={"nav-bar-item"} onClick={item.onClick}>
-          <a className="nav-bar-link">{item.text}</a>
-        </span>
-      </li>
-    );
-  };
   return <div>
     <nav className={"nav-bar"}>
       <li>
