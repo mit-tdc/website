@@ -1,5 +1,6 @@
 "use strict";
 /* global Aviator, React, TimeUtil */
+/* global adjustFooterHeight */
 const NAV_BAR_ITEMS = [
   {text: "TDC", onClick: () => Aviator.navigate("/")}, // todo - replace with logo
   {text: "Events", onClick: () => Aviator.navigate("/events")},
@@ -35,8 +36,8 @@ function App(){
 
 class Footer extends React.Component {
   componentDidMount(){
-    window.addEventListener("resize", Footer.adjustFooterHeight);
-    Footer.adjustFooterHeight();
+    window.addEventListener("resize", adjustFooterHeight);
+    adjustFooterHeight();
   }
 
   static adjustFooterHeight(){

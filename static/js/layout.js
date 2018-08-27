@@ -1,15 +1,9 @@
 "use strict";
-/* global App, Footer, Aviator, React, ReactDOM, TimeUtil, rushEvents */
+// frameworks loaded and used
+/* global Aviator, ReactDOM, rushEvents */
+// components loaded
+/* global App, EventGroupsContainer */
 /* global EventGroupsContainer */
-/*
-aviator stuffs:
-https://gist.github.com/hojberg/9549330
-https://github.com/swipely/aviator
-https://stackoverflow.com/questions/31048953/what-do-these-three-dots-in-react-do
-
-Gist on AFS:
-https://gist.github.com/robertvunabandi/36dc4eeab7646713fd627eefc5f5182a
-*/
 
 const AppRouteTarget = {
   setupLayout: () => {
@@ -17,7 +11,7 @@ const AppRouteTarget = {
   },
   events: () => {
     ReactDOM.render(React.createElement(EventGroupsContainer, { events: rushEvents }), document.querySelector("#content"));
-    Footer.adjustFooterHeight();
+    adjustFooterHeight();
   }
 };
 Aviator.setRoutes({
@@ -31,4 +25,15 @@ window.addEventListener("load", main);
 function main() {
   Aviator.dispatch();
   Aviator.navigate("/");
+}
+
+function adjustFooterHeight() {
+  const above_footer_height = document.querySelector("#content").clientHeight + document.querySelector("nav").clientHeight;
+  const footer = document.querySelector("#footer");
+  const window_height = window.innerHeight;
+  if (window_height - footer.clientHeight > above_footer_height) {
+    footer.style.marginTop = window_height - footer.clientHeight - above_footer_height + "px";
+  } else {
+    footer.style.marginTop = null;
+  }
 }
