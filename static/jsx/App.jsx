@@ -46,14 +46,10 @@ class Footer extends React.Component {
     const footer = document.querySelector("#footer");
     const window_height = window.innerHeight;
     if ((window_height - footer.clientHeight) > above_footer_height) {
-      footer.style.position = "fixed";
-      footer.style.top = (window_height - footer.clientHeight) + "px";
+      footer.style.marginTop = (window_height - footer.clientHeight - above_footer_height) + "px";
     } else {
-      footer.style.position = "relative";
-      footer.style.top = null;
+      footer.style.marginTop = null;
     }
-    footer.style.minWidth = document.body.clientWidth + "px";
-    footer.style.width = document.body.clientWidth + "px";
   }
 
   render(){
