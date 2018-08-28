@@ -66,17 +66,25 @@ body {
     padding: 0.25rem 1rem; }
     #content .events-group .event-groups-manipulation .event-groups-settings div:first-child {
       float: left;
-      width: 85%;
+      width: 70%;
       padding-right: 0.5rem; }
       #content .events-group .event-groups-manipulation .event-groups-settings div:first-child .event-manipulation-group {
-        display: block; }
+        display: block;
+        background-color: rgba(15, 15, 15, 0.2);
+        border-radius: 100rem;
+        padding: 0.15rem 1.15rem;
+        border: solid 1px rgba(15, 15, 15, 0.2); }
     #content .events-group .event-groups-manipulation .event-groups-settings div:last-child {
       float: left;
-      width: 15%;
+      width: 30%;
       padding-right: 0.5rem; }
       #content .events-group .event-groups-manipulation .event-groups-settings div:last-child .event-manipulation-search {
         display: block;
-        float: left; }
+        float: left;
+        background-color: rgba(15, 15, 15, 0.2);
+        border-radius: 100rem;
+        padding: 0.15rem 1.15rem;
+        border: solid 1px rgba(15, 15, 15, 0.2); }
     @media screen and (min-width: 576px) and (max-width: 768px) {
       #content .events-group .event-groups-manipulation .event-manipulation-toggle, #content .events-group .event-groups-manipulation .event-groups-settings {
         margin: 0 15%; } }

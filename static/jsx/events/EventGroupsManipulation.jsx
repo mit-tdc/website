@@ -35,27 +35,19 @@ class EventGroupsManipulationContainer extends React.Component {
 }
 
 function EventGroupsManipulationView(props){
-  const event_group_options = !props.optionsToggled
+  const event_group_options = !props.optionsToggled && false
     ? null
     : <div className={"event-groups-settings"}>
       <div>
         <span className={"event-manipulation-group"}>Groups: {props.activeGroupType}</span>
       </div>
       <div>
-        <span className={"event-manipulation-search"}>Search</span>
+        <span className={"event-manipulation-search"}>
+          Search
+        </span>
       </div>
     </div>;
   return <div className={"event-groups-manipulation"}>
-    <EventGroupsManipulationToggleView
-      onClick={props.toggleOptions}
-      toggled={props.optionsToggled}
-    />
     {event_group_options}
   </div>;
-}
-
-function EventGroupsManipulationToggleView(props){
-  return <div className={"event-manipulation-toggle"} onClick={props.onClick}>{
-    props.toggled ? "/\\" : "\\/"
-  }</div>;
 }

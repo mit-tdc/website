@@ -37,7 +37,7 @@ class EventGroupsManipulationContainer extends React.Component {
 }
 
 function EventGroupsManipulationView(props) {
-  const event_group_options = !props.optionsToggled ? null : React.createElement(
+  const event_group_options = !props.optionsToggled && false ? null : React.createElement(
     "div",
     { className: "event-groups-settings" },
     React.createElement(
@@ -63,18 +63,6 @@ function EventGroupsManipulationView(props) {
   return React.createElement(
     "div",
     { className: "event-groups-manipulation" },
-    React.createElement(EventGroupsManipulationToggleView, {
-      onClick: props.toggleOptions,
-      toggled: props.optionsToggled
-    }),
     event_group_options
-  );
-}
-
-function EventGroupsManipulationToggleView(props) {
-  return React.createElement(
-    "div",
-    { className: "event-manipulation-toggle", onClick: props.onClick },
-    props.toggled ? "/\\" : "\\/"
   );
 }
