@@ -2,9 +2,9 @@
 // frameworks
 /* global React, ReactDOM */
 // components
-/* global EventListContainer */
+/* global EventListContainer, EventGroupsManipulationContainer */
 // others imported objects and such
-/* global TimeUtil, dummyEvents */ // todo - remove dummyEvents
+/* global TimeUtil */
 const EVENT_GROUP_CONSTANTS = {
   ORDER: {
     // order alphabetically
@@ -33,6 +33,7 @@ class EventGroupsContainer extends React.Component {
     this.state = {
       order_type: EventGroupsContainer.defaultOrder,
       group_type: EventGroupsContainer.defaultGroup,
+      search_query: "",
     };
   }
   
@@ -42,6 +43,98 @@ class EventGroupsContainer extends React.Component {
   
   static get defaultGroup(){
     return EVENT_GROUP_CONSTANTS.GROUPS.all;
+  }
+  
+  render(){
+    const events = this.props.events || EVENT_GROUP_CONSTANTS.DEFAULT_EVENTS;
+    let ordered_groups = null;
+    if (this.state.search_query.length > 0) {
+      ordered_groups = EventGroupsContainer.getGroupsFromSearch(
+        events,
+        this.state.search_query
+      );
+    } else {
+      const groups = EventGroupsContainer.groupEvents(events, this.state.group_type);
+      ordered_groups = EventGroupsContainer.orderGroups(groups, this.state.order_type);
+    }
+    return <EventGroupsView
+      groups={ordered_groups}
+      groupType={this.state.group_type}
+      searchEvent={this.searchEvent.bind(this)}
+      clearSearch={this.clearSearch.bind(this)}
+      setGroupType={this.setGroupType.bind(this)}
+    />;
+  }
+  
+  // ==== searching methods ====
+  searchEvent(query){
+    this.setState({search_query: query});
+  }
+  
+  clearSearch(){
+    this.setState({search_query: ""});
+  }
+  
+  static getGroupsFromSearch(events, query){
+    const matchFunc = (string, query) =>{
+      const full_matches = string.match(new RegExp(query, "gi"));
+      const scattered_matches = string.match(new RegExp(query.split("").join(".*?"), "gi"));
+      return {
+        full: full_matches ? full_matches.length : 0,
+        scattered: scattered_matches ? scattered_matches.length : 0,
+      };
+    };
+    const eventWithPoints = events.map(event =>{
+      let points = 0;
+      const {name, description, location_name, location, date, time, duration, category} = event;
+      const name_match = matchFunc(name || "", query);
+      points += 25 * (name_match.full > 0 ? 1 : 0) + name_match.scattered;
+      const description_match = matchFunc(description || "", query);
+      points += 14 * description_match.full + 1.5 * description_match.scattered;
+      const location_match = matchFunc((location_name || "") + ", " + (location || ""), query);
+      points += 15 * location_match.full + 2 * location_match.scattered;
+      const date_match = matchFunc(TimeUtil.convertDateToReadableFormat(date), query);
+      points += 10 * date_match.full + 0.5 * date_match.scattered;
+      const time_match = matchFunc(TimeUtil.convertTimeToPM(time), query);
+      points += 10 * time_match.full + 0.5 * time_match.scattered;
+      const category_match = (() =>{
+        let result = {};
+        for (let i = 0; i < category.length; i += 1) {
+          const matches = matchFunc(category[i] || "", query);
+          result.full = result.full || 0 + matches.full;
+          result.scattered = result.scattered || 0 + matches.scattered;
+        }
+        return result;
+      })();
+      points += 25 * (category_match.full > 0 ? 1 : 0) + 5 * category_match.scattered;
+      return {name, description, location_name, location, date, time, duration, category, points};
+    });
+    const eventsWithEnoughPoints = eventWithPoints.filter(event => event.points >= 15);
+    const sortedByPointEvents = eventsWithEnoughPoints.sort((event1, event2) =>{
+      // we want the highest elements first, so we give those with
+      // high elements low priority in the sort functions, which
+      // ordered from low pri to high priority.
+      return event1.points < event2.points ? 1 : -1;
+    });
+    return [
+      {
+        name: "Search Results",
+        // points key is not used so no need to remove it
+        events: sortedByPointEvents,
+      }
+    ];
+  }
+  
+  // ==== grouping methods ====
+  setGroupType(group){
+    switch (group) {
+      case EVENT_GROUP_CONSTANTS.GROUPS.categorical:
+      case EVENT_GROUP_CONSTANTS.GROUPS.all:
+        this.setState({group_type: group});
+        break;
+      default:
+        throw "Invalid Group Given";
+    }
   }
   
   static groupEvents(events, group_type){
@@ -73,6 +166,7 @@ class EventGroupsContainer extends React.Component {
     return category_groups;
   }
   
+  // ==== ordering methods ====
   static orderGroups(groups, order_type){
     return groups.map((group) =>{
       const {name, events} = group;
@@ -105,7 +199,7 @@ class EventGroupsContainer extends React.Component {
    * @return {Array<Object<String, String>>}
    * */
   static orderEventsAlphabetically(events){
-    return Array.from(events).sort((event1, event2) => {
+    return Array.from(events).sort((event1, event2) =>{
       return event1.name.toLowerCase() >= event2.name.toLowerCase() ? 1 : -1;
     });
   }
@@ -159,18 +253,17 @@ class EventGroupsContainer extends React.Component {
       return event1.name >= event2.name ? 1 : -1;
     });
   }
-  
-  render(){
-    const events = this.props.events || dummyEvents || EVENT_GROUP_CONSTANTS.DEFAULT_EVENTS;
-    const groups = EventGroupsContainer.groupEvents(events, this.state.group_type);
-    const ordered_groups = EventGroupsContainer.orderGroups(groups, this.state.order_type);
-    return <EventGroupsView groups={ordered_groups}/>;
-  }
 }
 
 function EventGroupsView(props){
   return (
     <div className={"events-group"}>
+      <EventGroupsManipulationContainer
+        activeGroupType={props.groupType}
+        searchEvent={props.searchEvent}
+        clearSearch={props.clearSearch}
+        setGroupType={props.setGroupType}
+      />
       {
         props.groups.map((group) =>{
           const {name, events} = group;

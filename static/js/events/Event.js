@@ -5,6 +5,7 @@
  * event Object Structure
  *   name {String} a short text naming the event
  *   description {String} a long text describing the event
+ *   location_name {String} short text of location
  *   location {String} short text of location
  *   date {String} must be of format YYYY-MM-DD
  *   time {String} must be of format HH:MM:SS

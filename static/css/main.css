@@ -25,7 +25,8 @@
   letter-spacing: 3px; }
 
 * {
-  transition: all 200ms; }
+  transition: all 200ms;
+  box-sizing: border-box; }
 
 body {
   padding: 0;
@@ -58,6 +59,36 @@ body {
 
 #content .events-group {
   text-align: center; }
+  #content .events-group .event-groups-manipulation {
+    background-color: #2f3ae8;
+    color: white;
+    overflow: auto;
+    padding: 0.25rem 1rem; }
+    #content .events-group .event-groups-manipulation .event-groups-settings div:first-child {
+      float: left;
+      width: 85%;
+      padding-right: 0.5rem; }
+      #content .events-group .event-groups-manipulation .event-groups-settings div:first-child .event-manipulation-group {
+        display: block; }
+    #content .events-group .event-groups-manipulation .event-groups-settings div:last-child {
+      float: left;
+      width: 15%;
+      padding-right: 0.5rem; }
+      #content .events-group .event-groups-manipulation .event-groups-settings div:last-child .event-manipulation-search {
+        display: block;
+        float: left; }
+    @media screen and (min-width: 576px) and (max-width: 768px) {
+      #content .events-group .event-groups-manipulation .event-manipulation-toggle, #content .events-group .event-groups-manipulation .event-groups-settings {
+        margin: 0 15%; } }
+    @media screen and (min-width: 768px) and (max-width: 992px) {
+      #content .events-group .event-groups-manipulation .event-manipulation-toggle, #content .events-group .event-groups-manipulation .event-groups-settings {
+        margin: 0 20%; } }
+    @media screen and (min-width: 992px) and (max-width: 1200px) {
+      #content .events-group .event-groups-manipulation .event-manipulation-toggle, #content .events-group .event-groups-manipulation .event-groups-settings {
+        margin: 0 25%; } }
+    @media screen and (min-width: 1200px) {
+      #content .events-group .event-groups-manipulation .event-manipulation-toggle, #content .events-group .event-groups-manipulation .event-groups-settings {
+        margin: 0 30%; } }
   #content .events-group .event-list .event-group-name {
     display: block;
     font-size: 1.5rem;

@@ -3,6 +3,7 @@
 * {
   @extend .font-regular;
   transition: all 200ms;
+  box-sizing: border-box;
 }
 
 body {
@@ -46,6 +47,56 @@ body {
 #content {
   .events-group {
     text-align: center;
+    .event-groups-manipulation {
+      background-color: $c-blue-100;
+      color: white;
+      overflow: auto;
+      padding: 0.25rem 1rem;
+      .event-manipulation-toggle {
+      }
+      .event-groups-settings {
+        div:first-child {
+          float: left;
+          width: 85%;
+          padding-right: 0.5rem;
+          .event-manipulation-group {
+            display: block;
+          }
+        }
+        div:last-child {
+          float: left;
+          width: 15%;
+          padding-right: 0.5rem;
+          .event-manipulation-search {
+            display: block;
+            float: left;
+          }
+        }
+      }
+      @media screen and (min-width: $screen-xs) and (max-width: $screen-sm) {
+        .event-manipulation-toggle, .event-groups-settings {
+          margin: 0 15%;
+        }
+      }
+
+      @media screen and (min-width: $screen-sm) and (max-width: $screen-md) {
+        .event-manipulation-toggle, .event-groups-settings {
+          margin: 0 20%;
+        }
+      }
+
+      @media screen and (min-width: $screen-md) and (max-width: $screen-lg) {
+        .event-manipulation-toggle, .event-groups-settings {
+          margin: 0 25%;
+        }
+      }
+
+      @media screen and (min-width: $screen-lg) {
+        .event-manipulation-toggle, .event-groups-settings {
+          margin: 0 30%;
+        }
+      }
+    }
     .event-list {
       .event-group-name {
         @extend .font-cursive;
