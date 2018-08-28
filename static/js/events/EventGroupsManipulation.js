@@ -37,32 +37,78 @@ class EventGroupsManipulationContainer extends React.Component {
 }
 
 function EventGroupsManipulationView(props) {
-  const event_group_options = !props.optionsToggled && false ? null : React.createElement(
-    "div",
-    { className: "event-groups-settings" },
-    React.createElement(
-      "div",
-      null,
-      React.createElement(
-        "span",
-        { className: "event-manipulation-group" },
-        "Groups: ",
-        props.activeGroupType
-      )
-    ),
-    React.createElement(
-      "div",
-      null,
-      React.createElement(
-        "span",
-        { className: "event-manipulation-search" },
-        "Search"
-      )
-    )
-  );
   return React.createElement(
     "div",
     { className: "event-groups-manipulation" },
-    event_group_options
+    React.createElement(
+      "div",
+      { className: "event-groups-settings" },
+      React.createElement(
+        "div",
+        { className: "event-manipulation-group" },
+        React.createElement(
+          "span",
+          null,
+          "Groups: ",
+          props.activeGroupType
+        )
+      ),
+      React.createElement(EventManipulationSearchComponent, {
+        searchEvent: props.searchEvent,
+        clearSearch: props.clearSearch
+      })
+    )
+  );
+}
+
+class EventManipulationSearchComponent extends React.Component {
+  onKeyPress(e) {
+    const search_obj = document.querySelector(".event-manipulation-search");
+    const input = search_obj.children[0];
+    if (e.key === "Enter") {
+      input.blur();
+    }
+  }
+
+  onFocus() {
+    const group_obj = document.querySelector(".event-manipulation-group");
+    group_obj.classList.add("event-manipulation-group-hide");
+    const search_obj = document.querySelector(".event-manipulation-search");
+    search_obj.classList.add("event-manipulation-search-expand");
+  }
+
+  onBlur() {
+    const group_obj = document.querySelector(".event-manipulation-group");
+    group_obj.classList.remove("event-manipulation-group-hide");
+    const search_obj = document.querySelector(".event-manipulation-search");
+    search_obj.classList.remove("event-manipulation-search-expand");
+    const query = search_obj.children[0].value;
+    if (query.length === 0) {
+      this.props.clearSearch();
+    } else {
+      this.props.searchEvent(query);
+    }
+  }
+
+  render() {
+    return React.createElement(EventManipulationSearchView, {
+      onFocus: this.onFocus.bind(this),
+      onBlur: this.onBlur.bind(this),
+      onKeyPress: this.onKeyPress.bind(this)
+    });
+  }
+}
+
+function EventManipulationSearchView(props) {
+  return React.createElement(
+    "div",
+    { className: "event-manipulation-search" },
+    React.createElement("input", {
+      type: "text",
+      placeholder: "Search",
+      onFocus: props.onFocus,
+      onBlur: props.onBlur,
+      onKeyPress: e => props.onKeyPress(e)
+    })
   );
 }

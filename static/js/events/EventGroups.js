@@ -3,8 +3,8 @@
 /* global React, ReactDOM */
 // components
 /* global EventListContainer, EventGroupsManipulationContainer */
-// others imported objects and such
-/* global TimeUtil */
+// others imported objects and functions
+/* global TimeUtil, adjustFooterHeight */
 
 const EVENT_GROUP_CONSTANTS = {
   ORDER: {
@@ -64,6 +64,14 @@ class EventGroupsContainer extends React.Component {
     });
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    // after adjusting rendering this component, we need
+    // to adjust the footer height to make sure the footer
+    // is at the correct height. this is a fix for the search
+    // method specifically.
+    adjustFooterHeight();
+  }
+
   // ==== searching methods ====
   searchEvent(query) {
     this.setState({ search_query: query });
@@ -73,6 +81,18 @@ class EventGroupsContainer extends React.Component {
     this.setState({ search_query: "" });
   }
 
+  /**
+   * in this method we implement the complex search algorithm.
+   * beware! a full match of the search character is an immediate
+   * ticket for result showing. however, small, partial matches
+   * can also be important. this algorithm takes care of that too.
+   * finally, the algorithm makes sure to order the results in order
+   * of best match to weakest match. EZ
+   * @param events {Array<Object<String, String>>}
+   *   an array of objects. see Events.js
+   * @param query {String} a query to search
+   * @return {Array<Object>}
+   * */
   static getGroupsFromSearch(events, query) {
     const matchFunc = (string, query) => {
       const full_matches = string.match(new RegExp(query, "gi"));
@@ -85,16 +105,17 @@ class EventGroupsContainer extends React.Component {
     const eventWithPoints = events.map(event => {
       let points = 0;
       const { name, description, location_name, location, date, time, duration, category } = event;
+      // we take matches on the name very seriously
       const name_match = matchFunc(name || "", query);
-      points += 25 * (name_match.full > 0 ? 1 : 0) + name_match.scattered;
+      points += 32 * (name_match.full > 0 ? 1 : 0) + name_match.scattered;
       const description_match = matchFunc(description || "", query);
-      points += 14 * description_match.full + 1.5 * description_match.scattered;
+      points += 16 * description_match.full + 2.5 * description_match.scattered;
       const location_match = matchFunc((location_name || "") + ", " + (location || ""), query);
-      points += 15 * location_match.full + 2 * location_match.scattered;
+      points += 16 * location_match.full + 2 * location_match.scattered;
       const date_match = matchFunc(TimeUtil.convertDateToReadableFormat(date), query);
-      points += 10 * date_match.full + 0.5 * date_match.scattered;
+      points += 16 * date_match.full + 2.5 * date_match.scattered;
       const time_match = matchFunc(TimeUtil.convertTimeToPM(time), query);
-      points += 10 * time_match.full + 0.5 * time_match.scattered;
+      points += 16 * time_match.full + 1.5 * time_match.scattered;
       const category_match = (() => {
         let result = {};
         for (let i = 0; i < category.length; i += 1) {
