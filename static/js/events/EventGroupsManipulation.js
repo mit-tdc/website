@@ -7,8 +7,7 @@ class EventGroupsManipulationContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      optionsToggled: false,
-      removeGroupText: false
+      optionsToggled: false
     };
   }
 
@@ -24,12 +23,9 @@ class EventGroupsManipulationContainer extends React.Component {
   render() {
     const { activeGroupType, searchEvent, clearSearch, setGroupType } = this.props;
     return React.createElement(EventGroupsManipulationView, {
-      removeGroupText: this.state.removeGroupText,
       activeGroupType: activeGroupType,
       searchEvent: searchEvent,
       clearSearch: clearSearch,
-      searchOnFocus: this.searchOnFocus.bind(this),
-      searchOnBlur: this.searchOnBlur.bind(this),
       setGroupType: setGroupType,
       toggleOptions: this.toggleOptions.bind(this),
       optionsToggled: this.state.optionsToggled
@@ -41,14 +37,6 @@ class EventGroupsManipulationContainer extends React.Component {
       return { optionsToggled: !prevState.optionsToggled };
     });
   }
-
-  searchOnFocus() {
-    this.setState({ removeGroupText: true });
-  }
-
-  searchOnBlur() {
-    this.setState({ removeGroupText: false });
-  }
 }
 
 function EventGroupsManipulationView(props) {
@@ -58,62 +46,17 @@ function EventGroupsManipulationView(props) {
     React.createElement(
       "div",
       { className: "event-groups-settings" },
-      React.createElement(EventManipulationGroupComponent, {
-        removeGroupText: props.removeGroupText,
-        activeGroupType: props.activeGroupType
-      }),
       React.createElement(EventManipulationSearchComponent, {
         searchEvent: props.searchEvent,
-        clearSearch: props.clearSearch,
-        searchOnFocus: props.searchOnFocus,
-        searchOnBlur: props.searchOnBlur
+        clearSearch: props.clearSearch
       })
     )
   );
 }
 
-class EventManipulationGroupComponent extends React.Component {
-  render() {
-    return React.createElement(EventManipulationGroup, this.props);
-  }
-}
-
-function EventManipulationGroup(props) {
-  const content = props.removeGroupText ? "" : `Groups: ${props.activeGroupType}`;
-  return React.createElement(
-    "div",
-    { className: "event-manipulation-group" },
-    React.createElement(
-      "span",
-      null,
-      content
-    )
-  );
-}
-
 class EventManipulationSearchComponent extends React.Component {
-  onKeyPress(e) {
-    const search_obj = document.querySelector(".event-manipulation-search");
-    const input = search_obj.children[0];
-    if (e.key === "Enter") {
-      input.blur();
-    }
-  }
-
-  onFocus() {
-    this.props.searchOnFocus();
-    const group_obj = document.querySelector(".event-manipulation-group");
-    group_obj.classList.add("event-manipulation-group-hide");
-    const search_obj = document.querySelector(".event-manipulation-search");
-    search_obj.classList.add("event-manipulation-search-expand");
-  }
-
   onBlur() {
-    this.props.searchOnBlur();
-    const group_obj = document.querySelector(".event-manipulation-group");
-    group_obj.classList.remove("event-manipulation-group-hide");
-    const search_obj = document.querySelector(".event-manipulation-search");
-    search_obj.classList.remove("event-manipulation-search-expand");
+    const search_obj = document.querySelector(".event-manipulation-search-init");
     const query = search_obj.children[0].value;
     if (query.length === 0) {
       this.props.clearSearch();
@@ -123,11 +66,7 @@ class EventManipulationSearchComponent extends React.Component {
   }
 
   render() {
-    return React.createElement(EventManipulationSearchView, {
-      onFocus: this.onFocus.bind(this),
-      onBlur: this.onBlur.bind(this),
-      onKeyPress: this.onKeyPress.bind(this)
-    });
+    return React.createElement(EventManipulationSearchView, { onBlur: this.onBlur.bind(this) });
   }
 }
 
@@ -135,12 +74,20 @@ function EventManipulationSearchView(props) {
   return React.createElement(
     "div",
     { className: "event-manipulation-search" },
-    React.createElement("input", {
-      type: "text",
-      placeholder: "Search",
-      onFocus: props.onFocus,
-      onBlur: props.onBlur,
-      onKeyPress: e => props.onKeyPress(e)
-    })
+    React.createElement(
+      "span",
+      { className: "event-manipulation-search-init" },
+      React.createElement("input", {
+        type: "text",
+        placeholder: "Search",
+        onBlur: props.onBlur,
+        onKeyPress: event => {
+          const input_text = event.target;
+          if (event.key === "Enter") {
+            input_text.blur();
+          }
+        }
+      })
+    )
   );
 }
