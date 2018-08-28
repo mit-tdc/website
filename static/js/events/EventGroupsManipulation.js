@@ -3,13 +3,12 @@
 
 /* global EVENT_GROUP_CONSTANTS */
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 class EventGroupsManipulationContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      optionsToggled: false
+      optionsToggled: false,
+      removeGroupText: false
     };
   }
 
@@ -23,16 +22,32 @@ class EventGroupsManipulationContainer extends React.Component {
   }
 
   render() {
-    return React.createElement(EventGroupsManipulationView, _extends({}, this.props, {
+    const { activeGroupType, searchEvent, clearSearch, setGroupType } = this.props;
+    return React.createElement(EventGroupsManipulationView, {
+      removeGroupText: this.state.removeGroupText,
+      activeGroupType: activeGroupType,
+      searchEvent: searchEvent,
+      clearSearch: clearSearch,
+      searchOnFocus: this.searchOnFocus.bind(this),
+      searchOnBlur: this.searchOnBlur.bind(this),
+      setGroupType: setGroupType,
       toggleOptions: this.toggleOptions.bind(this),
       optionsToggled: this.state.optionsToggled
-    }));
+    });
   }
 
   toggleOptions() {
     this.setState((prevState, _) => {
       return { optionsToggled: !prevState.optionsToggled };
     });
+  }
+
+  searchOnFocus() {
+    this.setState({ removeGroupText: true });
+  }
+
+  searchOnBlur() {
+    this.setState({ removeGroupText: false });
   }
 }
 
@@ -43,20 +58,35 @@ function EventGroupsManipulationView(props) {
     React.createElement(
       "div",
       { className: "event-groups-settings" },
-      React.createElement(
-        "div",
-        { className: "event-manipulation-group" },
-        React.createElement(
-          "span",
-          null,
-          "Groups: ",
-          props.activeGroupType
-        )
-      ),
+      React.createElement(EventManipulationGroupComponent, {
+        removeGroupText: props.removeGroupText,
+        activeGroupType: props.activeGroupType
+      }),
       React.createElement(EventManipulationSearchComponent, {
         searchEvent: props.searchEvent,
-        clearSearch: props.clearSearch
+        clearSearch: props.clearSearch,
+        searchOnFocus: props.searchOnFocus,
+        searchOnBlur: props.searchOnBlur
       })
+    )
+  );
+}
+
+class EventManipulationGroupComponent extends React.Component {
+  render() {
+    return React.createElement(EventManipulationGroup, this.props);
+  }
+}
+
+function EventManipulationGroup(props) {
+  const content = props.removeGroupText ? "" : `Groups: ${props.activeGroupType}`;
+  return React.createElement(
+    "div",
+    { className: "event-manipulation-group" },
+    React.createElement(
+      "span",
+      null,
+      content
     )
   );
 }
@@ -71,6 +101,7 @@ class EventManipulationSearchComponent extends React.Component {
   }
 
   onFocus() {
+    this.props.searchOnFocus();
     const group_obj = document.querySelector(".event-manipulation-group");
     group_obj.classList.add("event-manipulation-group-hide");
     const search_obj = document.querySelector(".event-manipulation-search");
@@ -78,6 +109,7 @@ class EventManipulationSearchComponent extends React.Component {
   }
 
   onBlur() {
+    this.props.searchOnBlur();
     const group_obj = document.querySelector(".event-manipulation-group");
     group_obj.classList.remove("event-manipulation-group-hide");
     const search_obj = document.querySelector(".event-manipulation-search");

@@ -74,8 +74,9 @@ body {
           }
         }
         .event-manipulation-group-hide {
-          font-size: 0 !important;
           width: 0 !important;
+          padding-right: 0 !important;
+          font-size: 0;
           span {
             background-color: $c-transparent !important;
             border: none;
