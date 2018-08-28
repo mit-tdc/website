@@ -142,6 +142,19 @@ TimeUtil.isDateTimeJustHappened = function (date, time_, duration = TimeUtil.ZER
   };
 };
 /**
+ * if this happened already, that is, happened and at least 30 min,
+ * has passed, the this returns true. otherwise returns false.
+ * @param date {String} a string of the format YYYY-MM-DD
+ * @param time_ {String} a string of the format HH:MM:SS
+ * @param duration {String} a string of the format HH:MM:SS
+ * @return {Boolean}
+ * */
+TimeUtil.isDateTimeHappened = function (date, time_, duration = TimeUtil.ZERO_DURATION){
+  const {time} = TimeUtil.isDateTimeSoon(date, time_);
+  const duration_min = Math.round(TimeUtil.convertDurationToMils(duration) / TimeUtil.MIN_MILS);
+  return (time + duration_min + 30) < 0;
+};
+/**
  * if this happening right now, then this returns true
  * @param date {String} a string of the format YYYY-MM-DD
  * @param time_ {String} a string of the format HH:MM:SS
