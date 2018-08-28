@@ -10,7 +10,8 @@
 const TimeUtil = {
   HOUR_MILS: 3600 * 1000,
   MIN_MILS: 60 * 1000,
-  SEC_MILS: 1000
+  SEC_MILS: 1000,
+  ZERO_DURATION: "00:00:00"
 };
 /**
  * @param date {String} a string of the format YYYY-MM-DD
@@ -34,7 +35,7 @@ TimeUtil.isTimeMilsPassed = function (time_mils) {
  * @return {Integer}
  **/
 TimeUtil.getIncrementedDateInMils = function (date, time, increment_mils) {
-  return new Date(date + "T" + (time || "00:00:00")).getTime() + increment_mils || 0;
+  return new Date(date + "T" + time).getTime() + increment_mils || 0;
 };
 /**
  * @param date {String} a string of the format YYYY-MM-DD
@@ -97,4 +98,57 @@ TimeUtil.convertTimeToPM = function (time) {
   const int_hr = parseInt(hr);
   const hr_12_format = int_hr > 12 ? int_hr - 12 : int_hr;
   return `${hr_12_format}:${min} ${int_hr > 11 ? "pm" : "am"}`;
+};
+/**
+ * if this is happening soon, which means happening in less than
+ * 1 hour, then this will return true in the key "soon" and how
+ * long soon in the key "time".
+ * @param date {String} a string of the format YYYY-MM-DD
+ * @param time {String} a string of the format HH:MM:SS
+ * @return {Object}
+ *   object of the form {time: Integer, soon: Boolean}
+ *   the time object is expressed in minutes and represents
+ *   how soon this event is happening. a negative value means
+ *   the event has already started or has already happened.
+ * */
+TimeUtil.isDateTimeSoon = function (date, time) {
+  const date_mils = TimeUtil.getIncrementedDateInMils(date, time, 0);
+  const now_mils = Date.now();
+  const time_soon = date_mils - now_mils;
+  return {
+    time: Math.ceil(time_soon / TimeUtil.MIN_MILS),
+    soon: time_soon <= TimeUtil.HOUR_MILS && time_soon > 0
+  };
+};
+/**
+ * if this is just happened, that is, happened less than 30 min,
+ * then this will return true.
+ * @param date {String} a string of the format YYYY-MM-DD
+ * @param time_ {String} a string of the format HH:MM:SS
+ * @param duration {String} a string of the format HH:MM:SS
+ * @return {Object}
+ *   object of the form {time: Integer, just_happened: Boolean}
+ *   the time object is expressed in minutes, which represents
+ *   how long ago it has happened. a negative value means it's
+ *   still happening or hasn't happened yet.
+ * */
+TimeUtil.isDateTimeJustHappened = function (date, time_, duration = TimeUtil.ZERO_DURATION) {
+  const { time } = TimeUtil.isDateTimeSoon(date, time_);
+  const duration_min = Math.round(TimeUtil.convertDurationToMils(duration) / TimeUtil.MIN_MILS);
+  return {
+    time: Math.sign(time + duration_min),
+    just_happened: time + duration_min < 0 && Math.abs(time + duration_min) <= 30
+  };
+};
+/**
+ * if this happening right now, then this returns true
+ * @param date {String} a string of the format YYYY-MM-DD
+ * @param time_ {String} a string of the format HH:MM:SS
+ * @param duration {String} a string of the format HH:MM:SS
+ * @return {Boolean}
+ * */
+TimeUtil.isDateTimeHappeningNow = function (date, time_, duration = TimeUtil.ZERO_DURATION) {
+  const { time } = TimeUtil.isDateTimeSoon(date, time_);
+  const duration_min = Math.round(TimeUtil.convertDurationToMils(duration) / TimeUtil.MIN_MILS);
+  return time <= 0 && Math.abs(time) < duration_min;
 };
