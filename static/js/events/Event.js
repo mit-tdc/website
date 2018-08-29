@@ -1,6 +1,7 @@
 "use strict";
-/* global Aviator, React, ReactDOM, TimeUtil */
+/* global React, TimeUtil */
 
+/* global XLightShadedBoxView */
 /**
  * event Object Structure
  *   name {String} a short text naming the event
@@ -43,6 +44,7 @@ function EventView(props) {
       { className: "event-title" },
       name
     ),
+    React.createElement(EventIndicatorView, { date: date, time: time, duration: duration }),
     React.createElement(
       "span",
       { className: "event-time" },
@@ -67,19 +69,60 @@ function EventView(props) {
   );
 }
 
+function EventIndicatorView(props) {
+  const { date, time, duration } = props;
+  const soon_obj = TimeUtil.isDateTimeSoon(date, time);
+  if (soon_obj.soon) {
+    return React.createElement(
+      "span",
+      { className: "event-indicator event-indicator-soon" },
+      React.createElement(
+        XLightShadedBoxView,
+        null,
+        "happening in ",
+        soon_obj.time,
+        " min"
+      )
+    );
+  }
+  if (TimeUtil.isDateTimeHappeningNow(date, time, duration)) {
+    // show this as happening now
+    return React.createElement(
+      "span",
+      { className: "event-indicator event-indicator-now" },
+      React.createElement(
+        XLightShadedBoxView,
+        null,
+        "happening now!"
+      )
+    );
+  }
+  const just_happened_obj = TimeUtil.isDateTimeJustHappened(date, time, duration);
+  if (just_happened_obj.just_happened) {
+    return React.createElement(
+      "span",
+      { className: "event-indicator event-indicator-happened" },
+      React.createElement(
+        XLightShadedBoxView,
+        null,
+        "this happened ",
+        just_happened_obj.time,
+        " min ago"
+      )
+    );
+  }
+  return null;
+}
+
 function EventCategoryView(props) {
   const { categories } = props;
   return React.createElement(
     "span",
     { className: "event-categories" },
     categories.map(category => React.createElement(
-      "span",
+      XLightShadedBoxView,
       null,
-      React.createElement(
-        "span",
-        null,
-        category
-      )
+      category
     ))
   );
 }

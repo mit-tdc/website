@@ -1,6 +1,7 @@
 "use strict";
-/* global Aviator, React, ReactDOM, TimeUtil */
+/* global React, TimeUtil */
 
+/* global XLightShadedBoxView */
 /**
  * event Object Structure
  *   name {String} a short text naming the event
@@ -20,12 +21,11 @@ class EventContainer extends React.Component {
   constructor(props){
     super(props);
   }
-
+  
   render(){
     return <EventView {...this.props}/>;
   }
 }
-
 
 function EventView(props){
   /**
@@ -38,6 +38,7 @@ function EventView(props){
   return (
     <span className={"event"}>
       <span className={"event-title"}>{name}</span>
+      <EventIndicatorView date={date} time={time} duration={duration}/>
       <span className={"event-time"}>On {date_readable} at {time_readable}</span>
       <span className={"event-location"}>{location_name}, {location}</span>
       <EventCategoryView categories={category}/>
@@ -46,11 +47,43 @@ function EventView(props){
   );
 }
 
-function EventCategoryView(props) {
+function EventIndicatorView(props){
+  const {date, time, duration} = props;
+  const soon_obj = TimeUtil.isDateTimeSoon(date, time);
+  if (soon_obj.soon) {
+    return (
+      <span className={"event-indicator event-indicator-soon"}>
+        <XLightShadedBoxView>happening in {soon_obj.time} min</XLightShadedBoxView>
+      </span>
+    );
+  }
+  if (TimeUtil.isDateTimeHappeningNow(date, time, duration)) {
+    // show this as happening now
+    return (
+      <span className={"event-indicator event-indicator-now"}>
+        <XLightShadedBoxView>happening now!</XLightShadedBoxView>
+      </span>
+    );
+  }
+  const just_happened_obj = TimeUtil.isDateTimeJustHappened(date, time, duration);
+  if (just_happened_obj.just_happened) {
+    return (
+      <span className={"event-indicator event-indicator-happened"}>
+        <XLightShadedBoxView>
+          this happened {just_happened_obj.time} min ago
+        </XLightShadedBoxView>
+      </span>
+    );
+  }
+  return null;
+}
+
+function EventCategoryView(props){
   const {categories} = props;
   return (
     <span className={"event-categories"}>
-      {categories.map(category => <span><span>{category}</span></span>)}
+      
+      {categories.map(category => <XLightShadedBoxView>{category}</XLightShadedBoxView>)}
     </span>
   );
 }

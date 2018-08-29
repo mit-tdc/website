@@ -143,6 +143,62 @@ body {
       #content .events-group .event-list .event-list-content .event .event-time {
         display: block;
         font-weight: 100; }
+      #content .events-group .event-list .event-list-content .event .event-indicator {
+        display: block;
+        font-weight: 900;
+        font-style: oblique;
+        color: white; }
+        #content .events-group .event-list .event-list-content .event .event-indicator .x-light-shaded-box-init {
+          animation-duration: 2s;
+          animation-iteration-count: infinite; }
+@keyframes purpleBackAndForth {
+  0% {
+    background-color: rgba(179, 95, 255, 0.3); }
+  20% {
+    background-color: rgba(179, 95, 255, 0.6); }
+  60% {
+    background-color: #b35fff; }
+  75% {
+    background-color: rgba(179, 95, 255, 0.6); }
+  90% {
+    background-color: #b35fff; }
+  100% {
+    background-color: rgba(179, 95, 255, 0.3); } }
+      #content .events-group .event-list .event-list-content .event .event-indicator-soon .x-light-shaded-box-init {
+        background-color: rgba(179, 95, 255, 0.6);
+        animation-name: purpleBackAndForth; }
+@keyframes greenBackAndForth {
+  0% {
+    background-color: rgba(0, 184, 69, 0.3); }
+  20% {
+    background-color: rgba(0, 184, 69, 0.6); }
+  60% {
+    background-color: #00b845; }
+  75% {
+    background-color: rgba(0, 184, 69, 0.6); }
+  90% {
+    background-color: #00b845; }
+  100% {
+    background-color: rgba(0, 184, 69, 0.3); } }
+      #content .events-group .event-list .event-list-content .event .event-indicator-now .x-light-shaded-box-init {
+        background-color: rgba(0, 184, 69, 0.6);
+        animation-name: greenBackAndForth; }
+@keyframes redBackAndForth {
+  0% {
+    background-color: rgba(227, 36, 53, 0.3); }
+  20% {
+    background-color: rgba(227, 36, 53, 0.6); }
+  60% {
+    background-color: #e32435; }
+  75% {
+    background-color: rgba(227, 36, 53, 0.6); }
+  90% {
+    background-color: #e32435; }
+  100% {
+    background-color: rgba(227, 36, 53, 0.3); } }
+      #content .events-group .event-list .event-list-content .event .event-indicator-happened .x-light-shaded-box-init {
+        background-color: rgba(227, 36, 53, 0.6);
+        animation-name: redBackAndForth; }
       #content .events-group .event-list .event-list-content .event .event-location {
         display: block;
         font-weight: 900; }
@@ -152,13 +208,6 @@ body {
         font-style: italic;
         padding-top: 0.15rem;
         padding-bottom: 0.15rem; }
-        #content .events-group .event-list .event-list-content .event .event-categories span {
-          padding: 0 0.20rem; }
-          #content .events-group .event-list .event-list-content .event .event-categories span span {
-            padding: 0 0.5rem;
-            font-weight: 700;
-            border-radius: 3px;
-            background-color: rgba(15, 15, 15, 0.05); }
       #content .events-group .event-list .event-list-content .event .event-description {
         display: block;
         font-size: 1.1rem; }
@@ -189,5 +238,17 @@ body {
   font-weight: 100;
   line-height: 1.3;
   text-align: center; }
+
+/**
+ * Common Components
+ */
+.x-light-shaded-box {
+  padding: 0 0.20rem;
+  display: inline-block; }
+  .x-light-shaded-box .x-light-shaded-box-init {
+    padding: 0 0.5rem;
+    font-weight: 700;
+    border-radius: 3px;
+    background-color: rgba(15, 15, 15, 0.05); }
 
 /*# sourceMappingURL=main.css.map */

@@ -159,6 +159,95 @@ body {
             display: block;
             font-weight: 100;
           }
+          .event-indicator {
+            display: block;
+            font-weight: 900;
+            font-style: oblique;
+            color: white;
+            .x-light-shaded-box-init {
+              animation-duration: 2s;
+              animation-iteration-count: infinite;
+            }
+          }
+          .event-indicator-soon {
+            @keyframes purpleBackAndForth {
+              0% {
+                background-color: $c-purple-030;
+              }
+              20% {
+                background-color: $c-purple-060;
+              }
+              60% {
+                background-color: $c-purple-100;
+              }
+              75% {
+                background-color: $c-purple-060;
+              }
+              90% {
+                background-color: $c-purple-100;
+              }
+              100% {
+                background-color: $c-purple-030;
+              }
+            }
+            .x-light-shaded-box-init {
+              background-color: $c-purple-060;
+              animation-name: purpleBackAndForth;
+            }
+          }
+
+          .event-indicator-now {
+            @keyframes greenBackAndForth {
+              0% {
+                background-color: $c-green-030;
+              }
+              20% {
+                background-color: $c-green-060;
+              }
+              60% {
+                background-color: $c-green-100;
+              }
+              75% {
+                background-color: $c-green-060;
+              }
+              90% {
+                background-color: $c-green-100;
+              }
+              100% {
+                background-color: $c-green-030;
+              }
+            }
+            .x-light-shaded-box-init {
+              background-color: $c-green-060;
+              animation-name: greenBackAndForth;
+            }
+          }
+          .event-indicator-happened {
+            @keyframes redBackAndForth {
+              0% {
+                background-color: $c-red-030;
+              }
+              20% {
+                background-color: $c-red-060;
+              }
+              60% {
+                background-color: $c-red-100;
+              }
+              75% {
+                background-color: $c-red-060;
+              }
+              90% {
+                background-color: $c-red-100;
+              }
+              100% {
+                background-color: $c-red-030;
+              }
+            }
+            .x-light-shaded-box-init {
+              background-color: $c-red-060;
+              animation-name: redBackAndForth;
+            }
+          }
           .event-location {
             display: block;
             font-weight: 900;
@@ -169,15 +258,6 @@ body {
             font-style: italic;
             padding-top: 0.15rem;
             padding-bottom: 0.15rem;
-            span {
-              padding: 0 0.20rem;
-              span {
-                padding: 0 0.5rem;
-                font-weight: 700;
-                border-radius: 3px;
-                background-color: $c-black-005;
-              }
-            }
           }
           .event-description {
             display: block;
@@ -235,4 +315,19 @@ body {
   font-weight: 100;
   line-height: 1.3;
   text-align: center;
+}
+
+/**
+ * Common Components
+ */
+
+.x-light-shaded-box {
+  padding: 0 0.20rem;
+  display: inline-block;
+  .x-light-shaded-box-init {
+    padding: 0 0.5rem;
+    font-weight: 700;
+    border-radius: 3px;
+    background-color: $c-black-005;
+  }
 }
