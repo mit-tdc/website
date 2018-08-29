@@ -18,13 +18,11 @@ class EventListContainer extends React.Component {
   static splitCurrentToFutureAndPastEvents(events) {
     const future_or_current_events = events.filter(event => {
       const { date, time, duration } = event;
-      const duration_mils = TimeUtil.convertDurationToMils(duration);
-      return !TimeUtil.isTimeMilsPassed(TimeUtil.getIncrementedDateInMils(date, time, duration_mils));
+      return !TimeUtil.isDateTimeHappened(date, time, duration);
     });
     const past_events = events.filter(event => {
       const { date, time, duration } = event;
-      const duration_mils = TimeUtil.convertDurationToMils(duration);
-      return TimeUtil.isTimeMilsPassed(TimeUtil.getIncrementedDateInMils(date, time, duration_mils));
+      return TimeUtil.isDateTimeHappened(date, time, duration);
     });
     return [future_or_current_events, past_events];
   }
