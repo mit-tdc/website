@@ -1,7 +1,5 @@
 "use strict";
 /* global React, ReactDOM */
-
-/* global EVENT_GROUP_CONSTANTS */
 class EventGroupsManipulationContainer extends React.Component {
   constructor(props){
     super(props);
@@ -68,19 +66,17 @@ class EventManipulationSearchComponent extends React.Component {
 function EventManipulationSearchView(props){
   return (
     <div className={"event-manipulation-search"}>
-      <span className={"event-manipulation-search-init"}>
-        <input
-          type={"text"}
-          placeholder={"Search"}
-          onBlur={props.onBlur}
-          onKeyPress={(event) =>{
-            const input_text = event.target;
-            if (event.key === "Enter") {
-              input_text.blur();
-            }
-          }}
-        />
-      </span>
+      <input
+        type={"text"}
+        placeholder={"Search"}
+        onBlur={props.onBlur}
+        onKeyPress={(event) =>{
+          const input_text = event.target;
+          if (event.key === "Enter") {
+            input_text.blur();
+          }
+        }}
+      />
     </div>
   );
 }

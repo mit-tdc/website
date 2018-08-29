@@ -68,37 +68,34 @@ body {
     #content .events-group .event-groups-manipulation .event-groups-settings {
       display: block; }
       #content .events-group .event-groups-manipulation .event-groups-settings .event-manipulation-search {
-        float: left;
+        display: block;
         width: 100%;
-        font-weight: 100; }
-        #content .events-group .event-groups-manipulation .event-groups-settings .event-manipulation-search .event-manipulation-search-init {
-          display: block;
-          border: solid 1px rgba(16, 24, 147, 0.4);
-          border-radius: 100rem;
-          background-color: rgba(16, 24, 147, 0.5);
-          box-shadow: inset 0 0 1.5rem rgba(16, 24, 147, 0.6);
+        font-weight: 100;
+        border: solid 1px rgba(16, 24, 147, 0.4);
+        border-radius: 100rem;
+        background-color: rgba(16, 24, 147, 0.5);
+        box-shadow: inset 0 0 1.5rem rgba(16, 24, 147, 0.6);
+        text-align: center; }
+        #content .events-group .event-groups-manipulation .event-groups-settings .event-manipulation-search input[type=text] {
+          background-color: rgba(0, 0, 0, 0);
+          text-align: center;
+          font-weight: 700;
+          font-size: 1rem;
+          padding: 0 1rem;
+          color: white;
+          border: none;
           width: 100%;
-          text-align: center; }
-          #content .events-group .event-groups-manipulation .event-groups-settings .event-manipulation-search .event-manipulation-search-init input[type=text] {
-            background-color: rgba(0, 0, 0, 0);
-            text-align: center;
-            font-weight: 700;
-            font-size: 1rem;
-            padding: 0 1rem;
-            color: white;
-            border: none;
-            width: 100%;
-            display: inline-block;
-            letter-spacing: 1px; }
-          #content .events-group .event-groups-manipulation .event-groups-settings .event-manipulation-search .event-manipulation-search-init input[type=text]::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-            font-weight: 100; }
-          #content .events-group .event-groups-manipulation .event-groups-settings .event-manipulation-search .event-manipulation-search-init input[type=text]:focus {
-            background-color: rgba(16, 24, 147, 0.8);
-            border-radius: 100rem;
-            outline: none; }
-          #content .events-group .event-groups-manipulation .event-groups-settings .event-manipulation-search .event-manipulation-search-init input[type=text]:focus::placeholder {
-            color: rgba(255, 255, 255, 0.8); }
+          display: inline-block;
+          letter-spacing: 1px; }
+        #content .events-group .event-groups-manipulation .event-groups-settings .event-manipulation-search input[type=text]::placeholder {
+          color: rgba(255, 255, 255, 0.5);
+          font-weight: 100; }
+        #content .events-group .event-groups-manipulation .event-groups-settings .event-manipulation-search input[type=text]:focus {
+          background-color: rgba(16, 24, 147, 0.8);
+          border-radius: 100rem;
+          outline: none; }
+        #content .events-group .event-groups-manipulation .event-groups-settings .event-manipulation-search input[type=text]:focus::placeholder {
+          color: rgba(255, 255, 255, 0.8); }
     @media screen and (min-width: 576px) and (max-width: 768px) {
       #content .events-group .event-groups-manipulation .event-groups-settings {
         margin: 0 15%; } }
