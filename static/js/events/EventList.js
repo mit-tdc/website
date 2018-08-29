@@ -45,7 +45,7 @@ function EventListView(props) {
   const events = props.events || defaultEventListViewProps.events;
   let event_components = [];
   if (events.length === 0) {
-    event_components = React.createElement(EventListNoEventView, null);
+    event_components = React.createElement(EventListNoEventView, { isSearchResult: props.group_name === "search results" });
   } else {
     events.forEach((event, index) => {
       event_components.push(React.createElement(EventContainer, event));
@@ -86,10 +86,18 @@ function EventGroupName(props) {
   );
 }
 
-function EventListNoEventView() {
-  return React.createElement(
+function EventListNoEventView(props) {
+  const content = props.isSearchResult ? React.createElement(
     "span",
     null,
-    "There are no upcoming events!"
+    "No events found as a result of this search.",
+    React.createElement("br", null),
+    React.createElement("br", null),
+    "Try something different?"
+  ) : "There are no upcoming events for this category.";
+  return React.createElement(
+    "span",
+    { className: "event-list-no-event-view" },
+    content
   );
 }

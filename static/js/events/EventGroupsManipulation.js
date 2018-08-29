@@ -1,8 +1,6 @@
 "use strict";
 /* global React, ReactDOM */
 
-/* global EVENT_GROUP_CONSTANTS */
-
 class EventGroupsManipulationContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -55,9 +53,8 @@ function EventGroupsManipulationView(props) {
 }
 
 class EventManipulationSearchComponent extends React.Component {
-  onBlur() {
-    const search_obj = document.querySelector(".event-manipulation-search-init");
-    const query = search_obj.children[0].value;
+  onBlur(e) {
+    const query = e.target.value;
     if (query.length === 0) {
       this.props.clearSearch();
     } else {
@@ -74,20 +71,16 @@ function EventManipulationSearchView(props) {
   return React.createElement(
     "div",
     { className: "event-manipulation-search" },
-    React.createElement(
-      "span",
-      { className: "event-manipulation-search-init" },
-      React.createElement("input", {
-        type: "text",
-        placeholder: "Search",
-        onBlur: props.onBlur,
-        onKeyPress: event => {
-          const input_text = event.target;
-          if (event.key === "Enter") {
-            input_text.blur();
-          }
+    React.createElement("input", {
+      type: "text",
+      placeholder: "Search",
+      onBlur: props.onBlur,
+      onKeyPress: event => {
+        const input_text = event.target;
+        if (event.key === "Enter") {
+          input_text.blur();
         }
-      })
-    )
+      }
+    })
   );
 }

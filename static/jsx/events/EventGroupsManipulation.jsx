@@ -48,9 +48,8 @@ function EventGroupsManipulationView(props){
 }
 
 class EventManipulationSearchComponent extends React.Component {
-  onBlur(){
-    const search_obj = document.querySelector(".event-manipulation-search-init");
-    const query = search_obj.children[0].value;
+  onBlur(e){
+    const query = e.target.value;
     if (query.length === 0) {
       this.props.clearSearch();
     } else {

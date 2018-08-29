@@ -108,6 +108,11 @@ body {
     @media screen and (min-width: 1200px) {
       #content .events-group .event-groups-manipulation .event-groups-settings {
         margin: 0 30%; } }
+  #content .events-group .event-list .event-list-no-event-view {
+    display: block;
+    padding: 0.75rem 1rem;
+    font-weight: 100;
+    font-size: 1.25rem; }
   #content .events-group .event-list .event-group-name {
     display: block;
     font-size: 1.5rem;

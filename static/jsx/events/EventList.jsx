@@ -14,11 +14,11 @@ class EventListContainer extends React.Component {
     super(props);
     this.state = {displayPastEvents: false};
   }
-
+  
   static defaultProps(){
     return {name: null, events: []};
   }
-
+  
   static filterOutPastEvents(events){
     return events.filter(event =>{
       const {date, time, duration} = event;
@@ -28,7 +28,7 @@ class EventListContainer extends React.Component {
       );
     });
   }
-
+  
   render(){
     let events = this.props.events || [];
     if (!this.state.displayPastEvents) {
@@ -46,7 +46,8 @@ function EventListView(props){
   const events = props.events || defaultEventListViewProps.events;
   let event_components = [];
   if (events.length === 0) {
-    event_components = <EventListNoEventView/>;
+    event_components = (
+      <EventListNoEventView isSearchResult={props.group_name === "search results"}/>);
   } else {
     events.forEach((event, index) =>{
       event_components.push(<EventContainer {...event} />);
@@ -73,6 +74,16 @@ function EventGroupName(props){
   return <span className={"event-group-name"}>{props.group_name}</span>;
 }
 
-function EventListNoEventView(){
-  return <span>There are no upcoming events!</span>;
+function EventListNoEventView(props){
+  const content = props.isSearchResult
+    ? (
+      <span>
+        No events found as a result of this search.
+        <br/>
+        <br/>
+        Try something different?
+      </span>
+    )
+    : "There are no upcoming events for this category.";
+  return <span className={"event-list-no-event-view"}>{content}</span>;
 }

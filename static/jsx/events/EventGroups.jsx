@@ -139,7 +139,7 @@ class EventGroupsContainer extends React.Component {
     });
     return [
       {
-        name: "Search Results",
+        name: "search results",
         // points key is not used so no need to remove it
         events: sortedByPointEvents,
       }
