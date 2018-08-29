@@ -10,31 +10,52 @@ class EventListContainer extends React.Component {
    * each Object is represent an event. see Event.js for the exact
    * representation of events as object.
    * */
-  constructor(props){
-    super(props);
-    this.state = {displayPastEvents: false};
-  }
-  
   static defaultProps(){
     return {name: null, events: []};
   }
   
-  static filterOutPastEvents(events){
-    return events.filter(event =>{
+  static splitCurrentToFutureAndPastEvents(events){
+    const future_or_current_events =  events.filter(event =>{
       const {date, time, duration} = event;
       const duration_mils = TimeUtil.convertDurationToMils(duration);
       return !TimeUtil.isTimeMilsPassed(
         TimeUtil.getIncrementedDateInMils(date, time, duration_mils)
       );
     });
+    const past_events = events.filter(event =>{
+      const {date, time, duration} = event;
+      const duration_mils = TimeUtil.convertDurationToMils(duration);
+      return TimeUtil.isTimeMilsPassed(
+        TimeUtil.getIncrementedDateInMils(date, time, duration_mils)
+      );
+    });
+    return [future_or_current_events, past_events];
   }
   
   render(){
     let events = this.props.events || [];
-    if (!this.state.displayPastEvents) {
-      events = EventListContainer.filterOutPastEvents(events);
-    }
-    return <EventListView group_name={this.props.group_name} events={events}/>;
+    const [
+      future_or_current_events,
+      past_events,
+    ] = EventListContainer.splitCurrentToFutureAndPastEvents(events);
+    // we don't want to display past events if there aren't any
+    const passed_events_component = past_events.length > 0
+      ? <EventListView
+        group_name={"past events"}
+        events={past_events}
+        is_passed={true}
+      />
+      : null;
+    return (
+      <div>
+        <EventListView
+          group_name={this.props.group_name}
+          events={future_or_current_events}
+          is_passed={false}
+        />
+        {passed_events_component}
+      </div>
+    );
   }
 }
 
@@ -57,7 +78,7 @@ function EventListView(props){
     });
   }
   return (
-    <div className={"event-list"}>
+    <div className={"event-list" + (props.is_passed ? " event-list-past" : "")}>
       <span>
         <EventGroupName group_name={props.group_name}/>
         <span className={"event-list-content"}>{event_components}</span>

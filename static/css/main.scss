@@ -210,13 +210,27 @@ body {
         }
       }
     }
+
+    .event-list-past {
+      background-color: $c-black-005;
+      .event-group-name {
+        background-color: $c-black-050;
+      }
+      .event-list-content {
+        .event {
+          .event-title, .event-time, .event-location, .event-description {
+            color: $c-dark-grey-100;
+          }
+        }
+      }
+    }
   }
 }
 
 #footer {
   font-size: 1.0rem;
   padding: 1rem 0.5rem;
-  background-color: $c-black-080;
+  background-color: $c-black-090;
   color: white;
   font-weight: 100;
   line-height: 1.3;

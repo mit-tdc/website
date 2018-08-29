@@ -3,6 +3,17 @@ const HOUSE_ADDRESS = "372 Memorial Dr, Cambridge, MA 02139";
 const TDC_HOUSE_NAME = "TDC House";
 const rushEvents = [
   {
+    name: "TDHouse",
+    location_name: TDC_HOUSE_NAME,
+    location: HOUSE_ADDRESS,
+    description:
+    "Yes, this event is passed.",
+    date: "2018-08-01",
+    time: "12:00:00",
+    duration: "04:00:00",
+    category: ["Other"],
+  },
+  {
     name: "Car Smash",
     location_name: TDC_HOUSE_NAME,
     location: HOUSE_ADDRESS,

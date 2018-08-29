@@ -174,11 +174,17 @@ body {
   @media screen and (min-width: 1200px) {
     #content .events-group .event-list .event-list-content {
       margin: 0 30%; } }
+  #content .events-group .event-list-past {
+    background-color: rgba(15, 15, 15, 0.05); }
+    #content .events-group .event-list-past .event-group-name {
+      background-color: rgba(15, 15, 15, 0.5); }
+    #content .events-group .event-list-past .event-list-content .event .event-title, #content .events-group .event-list-past .event-list-content .event .event-time, #content .events-group .event-list-past .event-list-content .event .event-location, #content .events-group .event-list-past .event-list-content .event .event-description {
+      color: #323232; }
 
 #footer {
   font-size: 1.0rem;
   padding: 1rem 0.5rem;
-  background-color: rgba(15, 15, 15, 0.8);
+  background-color: rgba(15, 15, 15, 0.9);
   color: white;
   font-weight: 100;
   line-height: 1.3;
