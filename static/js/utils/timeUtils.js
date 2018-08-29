@@ -133,11 +133,12 @@ TimeUtil.isDateTimeSoon = function (date, time) {
  *   still happening or hasn't happened yet.
  * */
 TimeUtil.isDateTimeJustHappened = function (date, time_, duration = TimeUtil.ZERO_DURATION) {
-  const { time } = TimeUtil.isDateTimeSoon(date, time_);
-  const duration_min = Math.round(TimeUtil.convertDurationToMils(duration) / TimeUtil.MIN_MILS);
+  const date_mils = TimeUtil.getIncrementedDateInMils(date, time_, TimeUtil.convertDurationToMils(duration));
+  const now_mils = Date.now();
+  const time_happened_min = Math.round((now_mils - date_mils) / TimeUtil.MIN_MILS);
   return {
-    time: Math.sign(time + duration_min),
-    just_happened: time + duration_min < 0 && Math.abs(time + duration_min) <= 30
+    time: time_happened_min,
+    just_happened: time_happened_min > 0 && time_happened_min <= 30
   };
 };
 /**
