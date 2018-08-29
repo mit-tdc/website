@@ -8,8 +8,8 @@ const rushEvents = [{
   location: HOUSE_ADDRESS,
   description: "Yes, this event is passed.",
   date: "2018-08-29",
-  time: "16:20:00",
-  duration: "00:30:00",
+  time: "16:50:00",
+  duration: "00:10:00",
   category: ["Other"]
 }, {
   name: "Car Smash",

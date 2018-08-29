@@ -69,49 +69,68 @@ function EventView(props) {
   );
 }
 
-function EventIndicatorView(props) {
-  const { date, time, duration } = props;
-  const soon_obj = TimeUtil.isDateTimeSoon(date, time);
-  if (soon_obj.soon) {
-    return React.createElement(
-      "span",
-      { className: "event-indicator event-indicator-soon" },
-      React.createElement(
-        XLightShadedBoxView,
-        null,
-        "happening in ",
-        soon_obj.time,
-        " min"
-      )
-    );
+class EventIndicatorView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      interval: undefined
+    };
   }
-  if (TimeUtil.isDateTimeHappeningNow(date, time, duration)) {
-    // show this as happening now
-    return React.createElement(
-      "span",
-      { className: "event-indicator event-indicator-now" },
-      React.createElement(
-        XLightShadedBoxView,
-        null,
-        "happening now!"
-      )
-    );
+
+  componentDidMount() {
+    this.state.interval = setInterval(this.forceUpdate.bind(this), 1000);
   }
-  const just_happened_obj = TimeUtil.isDateTimeJustHappened(date, time, duration);
-  if (just_happened_obj.just_happened) {
-    return React.createElement(
-      "span",
-      { className: "event-indicator event-indicator-happened" },
-      React.createElement(
-        XLightShadedBoxView,
-        null,
-        "this happened ",
-        just_happened_obj.time,
-        " min ago"
-      )
-    );
+
+  render() {
+    const { date, time, duration } = this.props;
+    const soon_obj = TimeUtil.isDateTimeSoon(date, time);
+    if (soon_obj.soon) {
+      return React.createElement(
+        "span",
+        { className: "event-indicator event-indicator-soon" },
+        React.createElement(
+          XLightShadedBoxView,
+          null,
+          "happening in ",
+          soon_obj.time,
+          " min"
+        )
+      );
+    }
+    if (TimeUtil.isDateTimeHappeningNow(date, time, duration)) {
+      // show this as happening now
+      return React.createElement(
+        "span",
+        { className: "event-indicator event-indicator-now" },
+        React.createElement(
+          XLightShadedBoxView,
+          null,
+          "happening now!"
+        )
+      );
+    }
+    const just_happened_obj = TimeUtil.isDateTimeJustHappened(date, time, duration);
+    if (just_happened_obj.just_happened) {
+      return React.createElement(
+        "span",
+        { className: "event-indicator event-indicator-happened" },
+        React.createElement(
+          XLightShadedBoxView,
+          null,
+          "this happened ",
+          just_happened_obj.time,
+          " min ago"
+        )
+      );
+    }
+    // stop the interval 30 min after event is done so that the
+    // site remains fast and not cluttered with many intervals
+    const happened_already = TimeUtil.isDateTimeHappened(date, time, duration);
+    if (happened_already) {
+      clearInterval(this.state.interval);
+    }
+    return null;
   }
-  return null;
 }
 
 function EventCategoryView(props) {
