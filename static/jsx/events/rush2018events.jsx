@@ -7,7 +7,7 @@ const rushEvents = [
     location_name: TDC_HOUSE_NAME,
     location: HOUSE_ADDRESS,
     description:
-    "Yes, this event is passed.",
+    "Yes, this event is passed. This is a test.",
     date: "2018-08-29",
     time: "17:20:00",
     duration: "00:03:00",
