@@ -68,7 +68,7 @@ const rushEvents = [
   {
     name: "X1 Racing",
     location_name: "X1 Racing",
-    location: "???",
+    location: "290 Wood Rd, Braintree, MA 02184",
     description:
     "Mario Kart not cutting it out for you? Come put your driver skills to " +
     "the test with the best kart racing experience in New England. Must be " +

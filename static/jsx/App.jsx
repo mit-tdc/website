@@ -28,6 +28,7 @@ class Footer extends React.Component {
 
   render(){
     return <div id={"footer"}>
+      <div>Theta Delta Chi, 372 Memorial Dr, Cambridge, MA 02139</div>
       <div>Copyright &#9400; {TimeUtil.getCurrentYear()} Theta Delta Chi</div>
       <div>All Rights Reserved</div>
     </div>;

@@ -8,8 +8,8 @@ const rushEvents = [{
   location: HOUSE_ADDRESS,
   description: "Yes, this event is passed.",
   date: "2018-08-29",
-  time: "16:50:00",
-  duration: "00:10:00",
+  time: "17:00:00",
+  duration: "00:03:00",
   category: ["Other"]
 }, {
   name: "Car Smash",
@@ -50,7 +50,7 @@ const rushEvents = [{
 }, {
   name: "X1 Racing",
   location_name: "X1 Racing",
-  location: "???",
+  location: "290 Wood Rd, Braintree, MA 02184",
   description: "Mario Kart not cutting it out for you? Come put your driver skills to " + "the test with the best kart racing experience in New England. Must be " + "18 years old and have a valid US driver's license.",
   date: "2018-09-02",
   time: "16:00:00",
