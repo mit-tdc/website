@@ -8,7 +8,7 @@ const rushEvents = [{
   location: HOUSE_ADDRESS,
   description: "Yes, this event is passed.",
   date: "2018-08-29",
-  time: "17:00:00",
+  time: "17:20:00",
   duration: "00:03:00",
   category: ["Other"]
 }, {
@@ -104,7 +104,7 @@ const rushEvents = [{
 }, {
   name: "Late Night IHOP",
   location_name: "IHOP",
-  location: "???",
+  location: "16 Eliot St #18, Cambridge, MA 02138",
   description: "Want to see what the whole IHOb deal is? Come join us for pancakes " + "and burgers at the #1 place for college late night food binges.",
   date: "2018-09-03",
   time: "23:30:00",
@@ -113,7 +113,7 @@ const rushEvents = [{
 }, {
   name: "Paintball",
   location_name: "Boston Paintball, Ashland",
-  location: "???",
+  location: "120 Pond St, Ashland, MA 01721",
   description: "Come with us to Boston Paintland Ashland, where we will duke it out " + "in Apocalypse City. Only the strongest will survive!",
   date: "2018-09-04",
   time: "11:45:00",
@@ -140,7 +140,7 @@ const rushEvents = [{
 }, {
   name: "Midnight Sailing",
   location_name: "MIT Sailing Pavilion",
-  location: "???",
+  location: HOUSE_ADDRESS,
   description: "Need to soothe your nerves before the start of the semester? Come " + "with us for a relaxing night on the Charles River.",
   date: "2018-09-04",
   time: "22:00:00",
@@ -149,7 +149,7 @@ const rushEvents = [{
 }, {
   name: "Escape the Room",
   location_name: "Escape the Room",
-  location: "???",
+  location: "33 West St, Boston, MA 02111",
   description: "Want to escape that 8.01 lecture you that has you struggling? We " + "got you covered with Escape the Room.",
   date: "2018-09-05",
   time: "17:30:00",
@@ -167,7 +167,7 @@ const rushEvents = [{
 }, {
   name: "Boat Cruise (Invite Only)",
   location_name: "Boston Harbor",
-  location: "???",
+  location: "1 Seaport Ln, Boston, MA 02210",
   description: "Hope you are enjoying your first week of classes! But put that " + "aside for now, it’s time to get dressed as we gather on a boat and " + "cruise around the Boston Harbor in style.",
   date: "2018-09-06",
   time: "18:00:00",
@@ -176,7 +176,7 @@ const rushEvents = [{
 }, {
   name: "Bid Dinner (Invite Only)",
   location_name: "Fogo de Chao",
-  location: "???",
+  location: "200 Dartmouth St, Boston, MA 02116",
   description: "Come join us for a special dinner. Enjoy Boston's best desserts, " + "appetizers and entrees all in one night!",
   date: "2018-09-06",
   time: "17:00:00",
