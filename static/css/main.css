@@ -177,7 +177,7 @@ body {
   #content .events-group .event-list-past {
     background-color: rgba(15, 15, 15, 0.05); }
     #content .events-group .event-list-past .event-group-name {
-      background-color: rgba(15, 15, 15, 0.5); }
+      background-color: rgba(15, 15, 15, 0.6); }
     #content .events-group .event-list-past .event-list-content .event .event-title, #content .events-group .event-list-past .event-list-content .event .event-time, #content .events-group .event-list-past .event-list-content .event .event-location, #content .events-group .event-list-past .event-list-content .event .event-description {
       color: #323232; }
 
