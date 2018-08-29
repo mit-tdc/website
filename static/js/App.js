@@ -58,6 +58,11 @@ class Footer extends React.Component {
       React.createElement(
         "div",
         null,
+        "Theta Delta Chi, 372 Memorial Dr, Cambridge, MA 02139"
+      ),
+      React.createElement(
+        "div",
+        null,
         "Copyright \u24B8 ",
         TimeUtil.getCurrentYear(),
         " Theta Delta Chi"
