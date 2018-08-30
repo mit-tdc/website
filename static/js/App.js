@@ -46,7 +46,7 @@ function App() {
             "a",
             {
               className: "nav-bar-link",
-              href: "mailto:tdc-house@mit.edu?subject=[TDC%20Rush%202018]%20" },
+              href: "mailto:tdc-brothers@mit.edu?subject=[TDC%20Rush%202018]%20" },
             "Contact Us"
           )
         )
@@ -89,8 +89,8 @@ class Footer extends React.Component {
         ),
         React.createElement(
           "a",
-          { href: "mailto:tdc-house@mit.edu?subject=[TDC%20Rush%202018]%20" },
-          "tdc-house@mit.edu"
+          { href: "mailto:tdc-brothers@mit.edu?subject=[TDC%20Rush%202018]%20" },
+          "tdc-brothers@mit.edu"
         )
       ),
       React.createElement("br", null),

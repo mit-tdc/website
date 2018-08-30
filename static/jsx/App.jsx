@@ -19,7 +19,7 @@ function App(){
         <span className={"nav-bar-item"}>
           <a
             className={"nav-bar-link"}
-            href={"mailto:tdc-house@mit.edu?subject=[TDC%20Rush%202018]%20"}>
+            href={"mailto:tdc-brothers@mit.edu?subject=[TDC%20Rush%202018]%20"}>
             Contact Us
           </a>
         </span>
@@ -42,8 +42,8 @@ class Footer extends React.Component {
       <br/>
       <div>
         <span>Contact us at </span>
-        <a href={"mailto:tdc-house@mit.edu?subject=[TDC%20Rush%202018]%20"}>
-          tdc-house@mit.edu
+        <a href={"mailto:tdc-brothers@mit.edu?subject=[TDC%20Rush%202018]%20"}>
+          tdc-brothers@mit.edu
         </a>
       </div>
       <br/>
