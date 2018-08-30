@@ -14,19 +14,25 @@ const TimeUtil = {
   ZERO_DURATION: "00:00:00"
 };
 /**
- * @param date {String} a string of the format YYYY-MM-DD
- * @param time {String} a string of the format HH:MM:SS
- * @return {Boolean}
+ * different browsers handle the time differently. when calling
+ * new Date(date+"T"+time):
+ *   chrome thinks the input is in the current timezone
+ *   safari thinks the input is in GMT-0 timezone
  * */
-TimeUtil.isDatePassed = function (date, time) {
-  return new Date(date + "T" + time) < Date.now();
-};
-/**
- * @param time_mils {Integer} time in milliseconds
- * @return {Boolean}
- * */
-TimeUtil.isTimeMilsPassed = function (time_mils) {
-  return time_mils < Date.now();
+TimeUtil.getTimeOffsetMils = function () {
+  const is_chrome = /(chrome|crios)/gi.test(navigator.userAgent);
+  if (is_chrome) {
+    return 0;
+  }
+  // since safari on apple products assumes the input time is in
+  // gmt-0, we need to get back those hours by adding 4 to Cambridge
+  // times. the reason is because it eventually returns the result
+  // with gmt-4.
+  const is_safari = /Safari/gi.test(navigator.userAgent);
+  if (is_safari) {
+    return 4 * TimeUtil.HOUR_MILS;
+  }
+  return 0;
 };
 /**
  * @param date {String} a string of the format YYYY-MM-DD
@@ -35,14 +41,30 @@ TimeUtil.isTimeMilsPassed = function (time_mils) {
  * @return {Integer}
  * */
 TimeUtil.getIncrementedDateInMils = function (date, time, increment_mils) {
-  return new Date(date + "T" + time).getTime() + increment_mils || 0;
+  return new Date(date + "T" + time).getTime() + TimeUtil.getTimeOffsetMils() + (increment_mils || 0);
 };
+/**
+ * @param date {String} a string of the format YYYY-MM-DD
+ * @param time {String} a string of the format HH:MM:SS
+ * @return {Boolean}
+ * */
+TimeUtil.isDatePassed = function (date, time) {
+  return TimeUtil.getIncrementedDateInMils(date, time, 0) < Date.now();
+};
+/**
+ * @param time_mils {Integer} time in milliseconds
+ * @return {Boolean}
+ * */
+TimeUtil.isTimeMilsPassed = function (time_mils) {
+  return time_mils < Date.now();
+};
+
 /**
  * @param date {String} a string of the format YYYY-MM-DD
  * @return {Integer}
  * */
 TimeUtil.getDateInMils = function (date) {
-  return new Date(date).getTime();
+  return new Date(date).getTime() + TimeUtil.getTimeOffsetMils();
 };
 /**
  * @param duration {String} a string of the format HH:MM:SS

@@ -8,7 +8,7 @@ const rushEvents = [{
   location: HOUSE_ADDRESS,
   description: "Yes, this event is passed. This is a test.",
   date: "2018-08-30",
-  time: "00:01:00",
+  time: "00:30:00",
   duration: "00:20:00",
   category: ["Other"]
 }, {
