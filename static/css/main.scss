@@ -11,12 +11,20 @@ body {
   margin: 0;
 }
 
+a:link, a:visited {
+  text-decoration: none;
+}
+
 .nav-bar {
+  z-index: 1000;
   font-size: 1rem;
   padding: 0.125rem 0.5rem;
   background-color: $c-black-100;
   color: white;
   font-weight: 100;
+  a:link, a:visited {
+    color: white;
+  }
   li {
     list-style: none;
     display: inline-block;
@@ -45,14 +53,19 @@ body {
 }
 
 #content {
+  z-index: 500;
   .events-group {
     text-align: center;
     .event-groups-manipulation {
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
       display: block;
       background-color: $c-blue-100;
       color: white;
       overflow: auto;
-      padding: 0.5rem 1rem 0.1rem 1rem;
+      padding: 0.5rem 1rem 0.5rem 1rem;
+      box-shadow: 0 0.25rem 1.5rem 0.01rem $c-blue-100;
       .event-groups-settings {
         display: block;
         .event-manipulation-search {
@@ -292,14 +305,14 @@ body {
     }
 
     .event-list-past {
-      background-color: $c-black-005;
+      background-color: $c-black-010;
       .event-group-name {
-        background-color: $c-black-060;
+        background-color: $c-blue-dark-2x-100;
       }
       .event-list-content {
         .event {
           .event-title, .event-time, .event-location, .event-description {
-            color: $c-dark-grey-100;
+            color: $c-dark-grey-050;
           }
         }
       }
@@ -315,6 +328,10 @@ body {
   font-weight: 100;
   line-height: 1.3;
   text-align: center;
+  a:link, a:visited {
+    font-weight: 700;
+    color: white;
+  }
 }
 
 /**
