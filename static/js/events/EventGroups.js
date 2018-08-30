@@ -102,33 +102,27 @@ class EventGroupsContainer extends React.Component {
         scattered: scattered_matches ? scattered_matches.length : 0
       };
     };
+    const getPointResults = (string, query, full_match_scalar = 1, scattered_match_scalar = 1) => {
+      const match = matchFunc(string, query);
+      return full_match_scalar * match.full + scattered_match_scalar * match.scattered;
+    };
     const eventWithPoints = events.map(event => {
       let points = 0;
       const { name, description, location_name, location, date, time, duration, category } = event;
-      // we take matches on the name very seriously
-      const name_match = matchFunc(name || "", query);
-      points += 32 * (name_match.full > 0 ? 1 : 0) + name_match.scattered;
-      const description_match = matchFunc(description || "", query);
-      points += 16 * description_match.full + 2.5 * description_match.scattered;
-      const location_match = matchFunc((location_name || "") + ", " + (location || ""), query);
-      points += 16 * location_match.full + 2 * location_match.scattered;
-      const date_match = matchFunc(TimeUtil.convertDateToReadableFormat(date), query);
-      points += 16 * date_match.full + 2.5 * date_match.scattered;
-      const time_match = matchFunc(TimeUtil.convertTimeToPM(time), query);
-      points += 16 * time_match.full + 1.5 * time_match.scattered;
-      const category_match = (() => {
-        let result = {};
-        for (let i = 0; i < category.length; i += 1) {
-          const matches = matchFunc(category[i] || "", query);
-          result.full = result.full || 0 + matches.full;
-          result.scattered = result.scattered || 0 + matches.scattered;
+      [[name || "", 30, 1.0], [description || "", 24, 1.5], [(location_name || "") + ", " + (location || ""), 16, 2.0], [TimeUtil.convertDateToReadableFormat(date), 16, 2.5], [TimeUtil.convertTimeToPM(time), 16, 1.5]].concat(category.map(cat => [cat, 24, 1.5])).forEach(arr_values => {
+        const [string, full_match_scalar, scattered_match_scalar] = arr_values;
+        points += getPointResults(string, query, full_match_scalar, scattered_match_scalar);
+        const split_query = query.split(/(\s|,|\.)/);
+        for (let i = 0; i < split_query.length; i += 1) {
+          if (/(\s|,|\.)/.test(split_query[i]) || split_query[i].length === 0) {
+            continue;
+          }
+          points += getPointResults(string, split_query[i], full_match_scalar / 5.0, scattered_match_scalar / 4.0);
         }
-        return result;
-      })();
-      points += 25 * (category_match.full > 0 ? 1 : 0) + 5 * category_match.scattered;
+      });
       return { name, description, location_name, location, date, time, duration, category, points };
     });
-    const eventsWithEnoughPoints = eventWithPoints.filter(event => event.points >= 15);
+    const eventsWithEnoughPoints = eventWithPoints.filter(event => event.points >= 16);
     const sortedByPointEvents = eventsWithEnoughPoints.sort((event1, event2) => {
       // we want the highest elements first, so we give those with
       // high elements low priority in the sort functions, which
