@@ -26,6 +26,10 @@ class EventListContainer extends React.Component {
     return [future_or_current_events, past_events];
   }
   
+  reRender() {
+    this.forceUpdate();
+  }
+  
   render(){
     let events = this.props.events || [];
     const [
@@ -38,6 +42,7 @@ class EventListContainer extends React.Component {
         group_name={"past events"}
         events={past_events}
         is_passed={true}
+        reRenderParentList={() => null}
       />
       : null;
     return (
@@ -46,6 +51,7 @@ class EventListContainer extends React.Component {
           group_name={this.props.group_name}
           events={future_or_current_events}
           is_passed={false}
+          reRenderParentList={this.reRender.bind(this)}
         />
         {passed_events_component}
       </div>
@@ -65,7 +71,9 @@ function EventListView(props){
       <EventListNoEventView isSearchResult={props.group_name === "search results"}/>);
   } else {
     events.forEach((event, index) =>{
-      event_components.push(<EventContainer {...event} />);
+      event_components.push((
+        <EventContainer {...event} reRenderParentList={props.reRenderParentList} />
+      ));
       if (index < events.length - 1) {
         event_components.push(<EventSeparator/>);
       }

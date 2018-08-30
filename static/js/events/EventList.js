@@ -3,6 +3,8 @@
 
 /* global EventContainer, TimeUtil */
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 class EventListContainer extends React.Component {
   /**
    * expected props keys:
@@ -27,6 +29,10 @@ class EventListContainer extends React.Component {
     return [future_or_current_events, past_events];
   }
 
+  reRender() {
+    this.forceUpdate();
+  }
+
   render() {
     let events = this.props.events || [];
     const [future_or_current_events, past_events] = EventListContainer.splitCurrentToFutureAndPastEvents(events);
@@ -34,7 +40,8 @@ class EventListContainer extends React.Component {
     const passed_events_component = past_events.length > 0 ? React.createElement(EventListView, {
       group_name: "past events",
       events: past_events,
-      is_passed: true
+      is_passed: true,
+      reRenderParentList: () => null
     }) : null;
     return React.createElement(
       "div",
@@ -42,7 +49,8 @@ class EventListContainer extends React.Component {
       React.createElement(EventListView, {
         group_name: this.props.group_name,
         events: future_or_current_events,
-        is_passed: false
+        is_passed: false,
+        reRenderParentList: this.reRender.bind(this)
       }),
       passed_events_component
     );
@@ -60,7 +68,7 @@ function EventListView(props) {
     event_components = React.createElement(EventListNoEventView, { isSearchResult: props.group_name === "search results" });
   } else {
     events.forEach((event, index) => {
-      event_components.push(React.createElement(EventContainer, event));
+      event_components.push(React.createElement(EventContainer, _extends({}, event, { reRenderParentList: props.reRenderParentList })));
       if (index < events.length - 1) {
         event_components.push(React.createElement(EventSeparator, null));
       }

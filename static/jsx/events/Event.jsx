@@ -38,7 +38,12 @@ function EventView(props){
   return (
     <span className={"event"}>
       <span className={"event-title"}>{name}</span>
-      <EventIndicatorView date={date} time={time} duration={duration}/>
+      <EventIndicatorView
+        date={date}
+        time={time}
+        duration={duration}
+        reRenderParentList={props.reRenderParentList}
+      />
       <span className={"event-time"}>On {date_readable} at {time_readable}</span>
       <span className={"event-location"}>{location_name}, {location}</span>
       <EventCategoryView categories={category}/>
@@ -56,7 +61,7 @@ class EventIndicatorView extends React.Component {
   }
   
   componentDidMount(){
-    this.state.interval = setInterval(this.forceUpdate.bind(this), 1000);
+    this.state.interval = setInterval(this.forceUpdate.bind(this), 15 * TimeUtil.SEC_MILS);
   }
   
   render(){
@@ -92,6 +97,7 @@ class EventIndicatorView extends React.Component {
     const happened_already = TimeUtil.isDateTimeHappened(date, time, duration);
     if (happened_already) {
       clearInterval(this.state.interval);
+      this.props.reRenderParentList();
     }
     return null;
   }

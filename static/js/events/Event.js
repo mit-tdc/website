@@ -44,7 +44,12 @@ function EventView(props) {
       { className: "event-title" },
       name
     ),
-    React.createElement(EventIndicatorView, { date: date, time: time, duration: duration }),
+    React.createElement(EventIndicatorView, {
+      date: date,
+      time: time,
+      duration: duration,
+      reRenderParentList: props.reRenderParentList
+    }),
     React.createElement(
       "span",
       { className: "event-time" },
@@ -78,7 +83,7 @@ class EventIndicatorView extends React.Component {
   }
 
   componentDidMount() {
-    this.state.interval = setInterval(this.forceUpdate.bind(this), 1000);
+    this.state.interval = setInterval(this.forceUpdate.bind(this), 15 * TimeUtil.SEC_MILS);
   }
 
   render() {
@@ -128,6 +133,7 @@ class EventIndicatorView extends React.Component {
     const happened_already = TimeUtil.isDateTimeHappened(date, time, duration);
     if (happened_already) {
       clearInterval(this.state.interval);
+      this.props.reRenderParentList();
     }
     return null;
   }

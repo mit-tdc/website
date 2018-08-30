@@ -135,7 +135,7 @@ TimeUtil.isDateTimeSoon = function (date, time) {
 TimeUtil.isDateTimeJustHappened = function (date, time_, duration = TimeUtil.ZERO_DURATION) {
   const date_mils = TimeUtil.getIncrementedDateInMils(date, time_, TimeUtil.convertDurationToMils(duration));
   const now_mils = Date.now();
-  const time_happened_min = Math.round((now_mils - date_mils) / TimeUtil.MIN_MILS);
+  const time_happened_min = Math.ceil((now_mils - date_mils) / TimeUtil.MIN_MILS);
   return {
     time: time_happened_min,
     just_happened: time_happened_min > 0 && time_happened_min <= 30
@@ -150,9 +150,8 @@ TimeUtil.isDateTimeJustHappened = function (date, time_, duration = TimeUtil.ZER
  * @return {Boolean}
  * */
 TimeUtil.isDateTimeHappened = function (date, time_, duration = TimeUtil.ZERO_DURATION) {
-  const { time } = TimeUtil.isDateTimeSoon(date, time_);
-  const duration_min = Math.round(TimeUtil.convertDurationToMils(duration) / TimeUtil.MIN_MILS);
-  return time + duration_min + 30 < 0;
+  const date_mils = TimeUtil.getIncrementedDateInMils(date, time_, TimeUtil.convertDurationToMils(duration));
+  return date_mils + 30 * TimeUtil.MIN_MILS - Date.now() < 0;
 };
 /**
  * if this happening right now, then this returns true
@@ -163,6 +162,6 @@ TimeUtil.isDateTimeHappened = function (date, time_, duration = TimeUtil.ZERO_DU
  * */
 TimeUtil.isDateTimeHappeningNow = function (date, time_, duration = TimeUtil.ZERO_DURATION) {
   const { time } = TimeUtil.isDateTimeSoon(date, time_);
-  const duration_min = Math.round(TimeUtil.convertDurationToMils(duration) / TimeUtil.MIN_MILS);
+  const duration_min = Math.ceil(TimeUtil.convertDurationToMils(duration) / TimeUtil.MIN_MILS);
   return time <= 0 && Math.abs(time) < duration_min;
 };
