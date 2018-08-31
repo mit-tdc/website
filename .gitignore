@@ -6,4 +6,4 @@ node_modules/*/**
 static/bower_components/*
 package-lock.json
 private
-
+pull.md
