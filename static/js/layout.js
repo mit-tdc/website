@@ -17,14 +17,14 @@ const AppRouteTarget = {
 Aviator.setRoutes({
   target: AppRouteTarget,
   "/*": "setupLayout",
-  "/rush": "events",
-  "/rush/events": "events"
+  "/": "events",
+  "/rush": "events"
 });
 window.addEventListener("load", main);
 
 function main() {
   Aviator.dispatch();
-  Aviator.navigate("/rush");
+  Aviator.navigate("/");
 }
 
 function adjustFooterHeight() {
