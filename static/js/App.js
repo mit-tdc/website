@@ -28,7 +28,7 @@ function App() {
         null,
         React.createElement(
           "span",
-          { className: "nav-bar-item", onClick: () => Aviator.navigate("/events") },
+          { className: "nav-bar-item", onClick: () => Aviator.navigate("/rush/events") },
           React.createElement(
             "a",
             { className: "nav-bar-link" },

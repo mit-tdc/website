@@ -11,7 +11,7 @@ function App(){
         </span>
       </li>
       <li>
-        <span className={"nav-bar-item"} onClick={() => Aviator.navigate("/events")}>
+        <span className={"nav-bar-item"} onClick={() => Aviator.navigate("/rush/events")}>
           <a className={"nav-bar-link"}>Events</a>
         </span>
       </li>
