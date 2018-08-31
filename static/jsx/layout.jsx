@@ -23,13 +23,18 @@ Aviator.setRoutes({
   target: AppRouteTarget,
   "/*": "setupLayout",
   "/": "events",
-  "/rush": "events",
+  "/rush": {
+    target: AppRouteTarget,
+    "/*": "setupLayout",
+    "/": "events",
+    "/events": "events",
+  },
 });
 window.addEventListener("load", main);
 
 function main(){
   Aviator.dispatch();
-  Aviator.navigate("/");
+  Aviator.navigate("/rush/");
 }
 
 function adjustFooterHeight() {
