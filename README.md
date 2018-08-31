@@ -1,11 +1,23 @@
 # website
 Official TDC rush website. 
 
+## How to Pull
+
+Run 
+
+```bash
+git pull https://github.com/mit-tdc/website.git
+```
+
+In the future, it would be good to include a cron script that just pulls every 30 min or so. 
+
 ## Project Goals
 
 ### v1.0.0: MVP
 
 This app can display the events we have planned for rush.
+
+`[Completed]`
 
 ### v2.0.0: Show Brothers
 
