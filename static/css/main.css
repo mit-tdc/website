@@ -48,13 +48,17 @@ a:link, a:visited {
     list-style: none;
     display: inline-block;
     padding: 0.5rem 0.50rem; }
-    .nav-bar li .nav-bar-item-tdc {
-      font-weight: 900; }
-    .nav-bar li .nav-bar-item {
+    .nav-bar li .nav-bar-item-base, .nav-bar li .nav-bar-item-tdc, .nav-bar li .nav-bar-item {
       display: inline-block;
-      padding: 0.5rem 0.5rem; }
-      .nav-bar li .nav-bar-item .nav-bar-link {
+      padding: 0.5rem 0.5rem;
+      position: relative; }
+      .nav-bar li .nav-bar-item-base .nav-bar-link, .nav-bar li .nav-bar-item-tdc .nav-bar-link, .nav-bar li .nav-bar-item .nav-bar-link {
         border-bottom: 4px solid rgba(0, 0, 0, 0); }
+    .nav-bar li .nav-bar-item-tdc {
+      font-weight: 900;
+      top: 0.125rem;
+      letter-spacing: 3px;
+      font-size: 1.5rem; }
     .nav-bar li .nav-bar-item:hover .nav-bar-link {
       border-bottom: 4px solid rgba(255, 255, 255, 0.5); }
     .nav-bar li .nav-bar-item-tdc:hover {

@@ -4,6 +4,11 @@
 /* global adjustFooterHeight */
 
 function App() {
+  const TDC_GREEK = React.createElement(
+    "span",
+    null,
+    "\u0398\u0394\u03A7"
+  );
   return React.createElement(
     "div",
     null,
@@ -19,7 +24,7 @@ function App() {
           React.createElement(
             "a",
             { className: "nav-bar-link" },
-            "TDC"
+            TDC_GREEK || "TDC"
           )
         )
       ),

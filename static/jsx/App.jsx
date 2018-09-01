@@ -3,11 +3,12 @@
 
 /* global adjustFooterHeight */
 function App(){
+  const TDC_GREEK = <span>&Theta;&Delta;&Chi;</span>;
   return <div>
     <nav className={"nav-bar"}>
       <li>
         <span className={"nav-bar-item nav-bar-item-tdc"} onClick={() => Aviator.navigate("/")}>
-          <a className={"nav-bar-link"}>TDC</a>
+          <a className={"nav-bar-link"}>{TDC_GREEK || "TDC"}</a>
         </span>
       </li>
       <li>
