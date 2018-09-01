@@ -122,7 +122,7 @@ class EventIndicatorView extends React.Component {
         React.createElement(
           XLightShadedBoxView,
           null,
-          "this happened ",
+          "this event ended ",
           just_happened_obj.time,
           " min ago"
         )

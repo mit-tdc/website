@@ -87,7 +87,7 @@ class EventIndicatorView extends React.Component {
       return (
         <span className={"event-indicator event-indicator-happened"}>
         <XLightShadedBoxView>
-          this happened {just_happened_obj.time} min ago
+          this event ended {just_happened_obj.time} min ago
         </XLightShadedBoxView>
       </span>
       );
