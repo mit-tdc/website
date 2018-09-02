@@ -178,7 +178,7 @@ const rushEvents = [{
   location_name: "Fogo de Chao",
   location: "200 Dartmouth St, Boston, MA 02116",
   description: "Come join us for a special dinner. Enjoy Boston's best desserts, " + "appetizers and entrees all in one night!",
-  date: "2018-09-06",
+  date: "2018-09-07",
   time: "17:00:00",
   duration: "04:00:00",
   category: ["Dinner", "Food"]
