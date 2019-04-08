@@ -7,3 +7,5 @@ static/bower_components/*
 package-lock.json
 private
 pull.md
+.DS_Store
+**/*/.DS_Store
