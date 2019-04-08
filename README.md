@@ -11,7 +11,7 @@ To make changes, pull the code by running:
 git pull https://github.com/mit-tdc/website.git
 ```
 
-Then, make changes. Then, make *explicit* commits. That means, if you edited file `path/to/file/somefile.extension`, do the following to submit changes to that file:
+Then, make changes. Then, make **explicit** commits. That means, if you edited file `path/to/file/somefile.extension`, do the following to submit changes to that file:
 
 ```bash
 git add path/to/file/somefile.extension
@@ -44,7 +44,7 @@ git pull https://github.com/mit-tdc/website.git
 
 In the future, it would be good to include a cron script that just pulls every 30 min or so. In addition, it would be good to move the website to the root of `web_scripts`, but there are other files there that we should identify the use of and carefully rearrange before we can safely do that. 
 
-*NOTE*: NEVER MAKE CHANGES IN THE MIT AFS. Always make changes in your local machine, push from there. Then, pull from here. 
+**NOTE**: NEVER MAKE CHANGES IN THE MIT AFS. Always make changes in your local machine, push from there. Then, pull from here. 
 
 ## Project Goals
 
