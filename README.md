@@ -26,6 +26,10 @@ git commit -m '
 updated {X} to do {Y} because {Z}
 
 additional comment/context about this update
+... more lines ...
+... more lines ...
+... more lines ...
+'
 ```
 
 ### Reflecting Changes on the Real Website
