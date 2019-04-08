@@ -44,6 +44,8 @@ git pull https://github.com/mit-tdc/website.git
 
 In the future, it would be good to include a cron script that just pulls every 30 min or so. In addition, it would be good to move the website to the root of `web_scripts`, but there are other files there that we should identify the use of and carefully rearrange before we can safely do that. 
 
+*NOTE*: NEVER MAKE CHANGES IN THE MIT AFS. Always make changes in your local machine, push from there. Then, pull from here. 
+
 ## Project Goals
 
 ### v1.0.0: MVP
