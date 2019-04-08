@@ -1,15 +1,44 @@
 # website
 Official TDC rush website. 
 
-## How to Pull
+## How to Edit Code
 
-Run 
+### Making Changes
+
+To make changes, pull the code by running:
 
 ```bash
 git pull https://github.com/mit-tdc/website.git
 ```
 
-In the future, it would be good to include a cron script that just pulls every 30 min or so. 
+Then, make changes. Then, make *explicit* commits. That means, if you edited file `path/to/file/somefile.extension`, do the following to submit changes to that file:
+
+```bash
+git add path/to/file/somefile.extension
+git commit -m 'updated {X} to do {Y} because {Z}'
+```
+
+where `X` represents what exactly you updated, `Y` what the new thing does now, and `Z` represents why you made those changes. You can also use the (_recommended_) long format of committing:
+
+```bash
+git add path/to/file/somefile.extension
+git commit -m '
+updated {X} to do {Y} because {Z}
+
+additional comment/context about this update
+```
+
+### Reflecting Changes on the Real Website
+
+Log into the MIT AFS system, then navigate to `/afs/athena.mit.edu/activity/t/tdc` (Note, there's a way to do this much faster if you read the MIT AFS guide below).
+
+Now, this website is currently held inside `/tdc/web_scripts/rush` directory, so navigate to that (including `rush`) and run the following:
+
+```bash
+git pull https://github.com/mit-tdc/website.git
+```
+
+In the future, it would be good to include a cron script that just pulls every 30 min or so. In addition, it would be good to move the website to the root of `web_scripts`, but there are other files there that we should identify the use of and carefully rearrange before we can safely do that. 
 
 ## Project Goals
 
